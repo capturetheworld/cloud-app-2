@@ -1,5 +1,7 @@
 cloud/node_modules
 
+cloud/.expo/web/cache
+
 query/node_modules
 
 node_modules

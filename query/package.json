@@ -1,5 +1,5 @@
 {
-    "name": "query",
+    "name": "@domatic/query",
     "private": true,
     "version": "1.0.0",
     "description": "API Queries",
