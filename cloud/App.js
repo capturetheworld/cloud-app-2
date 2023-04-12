@@ -1,7 +1,8 @@
 import React from 'react';
 import { StyleSheet, Image, View } from 'react-native';
-import Button from './Button';
+import Button from './components/Button';
 import { useFonts } from 'expo-font';
+import { setScene } from './api';
 
 export default function App() {
 
@@ -13,18 +14,6 @@ export default function App() {
         return null;
     }
 
-    const onPress = async num => {
-        try {
-            const response = await fetch(`/circuit/scene/${num}`, {
-                method: 'PUT'
-            });
-            console.log(`pressed ${num}, response ${response.status}`);
-        }
-        catch (error) {
-            console.error(`pressed ${num}, error: ${error}`);
-        }
-    };
-
     return (
         <View style={styles.container} >
             <View style={styles.behind}>
@@ -34,11 +23,11 @@ export default function App() {
                 <View style={styles.spacer}>
                 </View>
                 <View style={styles.buttonBar}>
-                    <Button title="Home" style={styles.button} onPress={() => onPress('home')} />
+                    <Button title="Home" style={styles.button} onPress={() => setScene('home')} />
                     <div style={styles.hspacer}>&nbsp;</div>
-                    <Button title="Bedtime" style={styles.button} onPress={() => onPress('bedtime')} />
+                    <Button title="Bedtime" style={styles.button} onPress={() => setScene('bedtime')} />
                     <div style={styles.hspacer}>&nbsp;</div>
-                    <Button title="Hibernate" style={styles.button} onPress={() => onPress('hibernate')} />
+                    <Button title="Hibernate" style={styles.button} onPress={() => setScene('hibernate')} />
                 </View>
             </View>
         </View>
