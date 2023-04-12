@@ -1,6 +1,2 @@
-cloud/node_modules
-cloud-player/node_modules
-cloud-player/.expo/web/cache
-cloud/.expo/web/cache
-query/node_modules
-node_modules
+**/node_modules/
+**/.expo/
