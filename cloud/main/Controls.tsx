@@ -50,7 +50,7 @@ const Controls = (props: Props) => {
             Morning
           </Typography>
         </ToggleButton>
-        {/* <Box sx={{ visibility: "hidden" }}>Nothing</Box> */}
+        <div style={{ visibility: "hidden" }}>Nothing</div>
       </ToggleButtonGroup>
     </Box>
 
