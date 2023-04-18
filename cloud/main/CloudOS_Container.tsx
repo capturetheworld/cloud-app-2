@@ -11,10 +11,13 @@ const CloudOSContainer = (props: Props) => {
 
   return (
     <Container fixed sx={{
-      backgroundColor: 'rgb(138, 138, 138)', width: "100vw", height: "100vh",
+      backgroundColor: 'rgb(138, 138, 138)',
+      width: "768px", height: "1024px",
+      maxWidth: "768px", maxHeight: "1024px",
+      minWidth: "768px", minHeight: "1024px",
     }}
     >
-      <Card sx={{ paddingTop: "21px", backgroundColor: "rgba(255,255,255,.4)" }}>
+      <Card sx={{ backgroundColor: "rgba(255,255,255,.4)" }}>
 
         <Box sx={{ textAlign: "right" }}><ClockWidget /></Box>
 

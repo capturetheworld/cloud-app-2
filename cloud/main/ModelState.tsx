@@ -13,7 +13,7 @@ type Props = {}
 const ModelState = (props: Props) => {
   const { currentImageUrl } = useZusStore((state) => state)
   return (
-    <Image src={currentImageUrl} />
+    <Image src={currentImageUrl} duration={3100} />
   )
 }
 

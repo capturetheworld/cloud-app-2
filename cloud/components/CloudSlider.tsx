@@ -7,40 +7,42 @@ import styled from '@emotion/styled'
 interface Props {
   valueLabelDisplay: boolean,
   icon?: string,
+  value?: number
 }
-export default function VerticalSlider({ valueLabelDisplay }: Props) {
+export default function VerticalSlider({ valueLabelDisplay, icon, value }: Props) {
   function preventHorizontalKeyboardNavigation(event: React.KeyboardEvent) {
     if (event.key === 'ArrowLeft' || event.key === 'ArrowRight') {
       event.preventDefault()
     }
   }
-  const icon = require('/assets/adaptive-icon.png')
-  console.log("ICON", icon)
-  const [sliderValue, setSliderValue] = React.useState(0)
-
+  const [slidervalue, setSlidervalue] = React.useState(value || 100)
+  React.useEffect(() => {
+    setSlidervalue(value)
+  }, [value])
   const onChange = (event, newValue) => {
     console.log('Slider value changed to', newValue)
-    setSliderValue(newValue)
+    setSlidervalue(newValue)
   }
+  console.log("RENDERING SLIDER", slidervalue)
   return (
-    <Box sx={{ height: 300 }}>
+    <Box sx={{ height: 308 }}>
       <StyledSlider
         // color="danger"
         icon={icon}
         marks={false}
         orientation="vertical"
         size="lg"
-        sliderValue={sliderValue}
+        value={slidervalue}
         onChange={onChange}
-        valueLabelDisplay={valueLabelDisplay ? "on" : "off"}
+        valueLabelDisplay={"auto"}
         variant="plain"
+        // onChangeCommitted={() => alert("Dang")}
         sx={{
           "--Slider-track-size": "21px",
           "--Slider-mark-size": "0px",
           "--Slider-thumb-size": "0px",
           "--Slider-thumb-width": "0px",
           "--Slider-valueLabel-arrowSize": "0px",
-          backGroundColor: 'red',
           borderRadius: '14px',
         }}
       />
@@ -71,14 +73,28 @@ const StyledSlider = styled(Slider, {
       width: "80%",
       maxHeight: "97%",
       marginBottom: "3.5px",
-      marginTop: "3.5px"
+      marginTop: "3.5px",
+      // backgroundColor: "#C5C4BD",
     },
     '& .MuiSlider-thumb': {
+      width: "54px",
+      height: "54px",
+      backgroundRepeat: "no-repeat",
+      backgroundAttachment: "fixed",
+      backgroundPosition: "center",
       backgroundColor: 'transparent',
-      border: 'none',
       backgroundImage: `url(${prop.icon})`,
-      marginBottom: `${(-prop.sliderValue * .5) + 21}px`,
+      marginBottom: `${(-prop.value * .5) + 21}px`,
       marginTop: "3.5px",
+      '&::before': {
+        border: 'none',
+      }
+    },
+
+    '& .Mui-focusVisible': {
+      border: "10px solid red",
+      outline: 'none',
+      outlineOffset: 'none',
     },
     '& .MuiSlider-slider': {
     },
