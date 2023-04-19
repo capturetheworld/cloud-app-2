@@ -23,6 +23,8 @@ const ClockWidget = (props: Props) => {
   // https://api.openweathermap.org/data/3.0/onecall?lat=33.44&lon=-94.04&exclude=hourly,daily&appid={API key}
   // const weatherUrl = `https://api.openweathermap.org/data/2.5/weather?lat=${weatherProps.lat}&lon=${weatherProps.lon}&exclude=minutely,hourly,alerts&units=${weatherProps.units}&appid=${weatherApi}`
   const weatherUrl = `https://api.openweathermap.org/data/3.0/onecall?lat=${weatherProps.lat}&lon=${weatherProps.lon}&exclude=minutely,hourly,daily,alert&appid=${weatherApi}&units=${weatherProps.units}`
+
+
   const { data: weatherData } = useQuery('weather', () =>
     fetch(weatherUrl).then(res =>
       res.json()
@@ -45,7 +47,7 @@ const ClockWidget = (props: Props) => {
       const formattedHours = hours % 12 || 12
       const formattedMinutes = minutes < 10 ? `0${minutes}` : minutes
 
-      const currentTime = `${formattedHours}:${formattedMinutes}:${today.getSeconds()} ${ampm} `
+      const currentTime = `${formattedHours}:${formattedMinutes} ${ampm} `
 
 
       setCurrentTime(currentTime)
@@ -59,20 +61,20 @@ const ClockWidget = (props: Props) => {
   }, [])
 
   return (
-    <Box sx={{ paddingRight: "14px" }}>
+    <Box sx={{ paddingRight: "14px", marginTop: "21px", marginRight: "14px" }}>
       <Box>
         <Typography>
-          {currentDate}
+          {currentDate || 'Loading...'}
         </Typography>
       </Box>
       <Box>
-        <Typography variant='h5'>
-          {currentTime}
+        <Typography variant='h3'>
+          {currentTime || 'Loading...'}
         </Typography>
 
       </Box>
       <Box sx={{ display: "flex", flexDirection: "row", justifyContent: 'flex-end', alignItems: "Center" }}>
-        {weatherData && <Image src={`https://openweathermap.org/img/wn/${weatherData.current.weather[0].icon}.png`} width={'28px'} />}
+        {weatherData && <Image src={`https://openweathermap.org/img/wn/${weatherData.current.weather[0].icon}.png`} width={'28px'} /> || 'Loading...'}
         {weatherData && `${Math.round(weatherData.current.temp)}°F`}</Box>
 
     </Box>

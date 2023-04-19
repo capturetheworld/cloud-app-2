@@ -1,15 +1,10 @@
-import { Box, Chip, ToggleButton, ToggleButtonGroup, Typography, styled } from '@mui/material'
+import { Box, ToggleButton, ToggleButtonGroup, Typography, styled } from '@mui/material'
 import useZusStore from '../data/zustand'
-import HomeOutlinedIcon from '@mui/icons-material/HomeOutlined'
-import WorkOutlineOutlinedIcon from '@mui/icons-material/WorkOutlineOutlined'
-import DarkModeOutlinedIcon from '@mui/icons-material/DarkModeOutlined'
-import LightModeOutlinedIcon from '@mui/icons-material/LightModeOutlined'
 import { setScene } from '../api'
 
-type Props = {}
 
-const Controls = (props: Props) => {
-  const { SET_CURRENT_STATE, currentImageUrl, currentState } = useZusStore((state) => state)
+const Controls = () => {
+  const { SET_CURRENT_STATE, currentImageUrl, currentState, icons } = useZusStore((state) => state)
 
   const changeImage = (e: React.MouseEvent<HTMLElement>, state: any) => {
     if (state !== null) {
@@ -17,13 +12,6 @@ const Controls = (props: Props) => {
       setScene(state)
     }
   }
-  const icons = {
-    home: require('/assets/buttons/home.png'),
-    away: require('/assets/buttons/away.png'),
-    bedtime: require('/assets/buttons/moon.png'),
-    awake: require('/assets/buttons/morning.png'),
-  }
-
   return (
     <Box sx={{ display: "flex", flexDirection: "column", padding: "14px" }}>
       <ToggleButtonGroup
@@ -37,7 +25,6 @@ const Controls = (props: Props) => {
           justifyContent: "space-between"
         }}>
         <StyledToggleButton value="home" aria-label='Home' selected={currentState === "home"}
-          sx={{ backgroundColor: currentState === "home" ? "white" : "" }}
         >
           <img src={icons.home} style={{ marginRight: "3.5px", marginBottom: "2px" }} />
           <Typography>
@@ -56,16 +43,16 @@ const Controls = (props: Props) => {
             Bedtime
           </Typography>
         </StyledToggleButton>
-        <StyledToggleButton sx={{ backgroundColor: currentState === "awake" ? "white" : "" }}
+        <StyledToggleButton sx={{ backgroundColor: currentState === "awake" ? "white" : "", borderRadius: "14px" }}
           value="awake" aria-label='Morning' selected={currentState === "awake"}>
           <img src={icons.awake} style={{ marginRight: "3.5px", marginBottom: "2px" }} />
           <Typography>
             Morning
           </Typography>
         </StyledToggleButton>
-        <StyledToggleButton onClick={(e) => e.preventDefault()} sx={{ opacity: 0 }} value="" aria-label='' selected={false}></StyledToggleButton>
+        <ToggleButton onClick={(e) => e.preventDefault()} sx={{ opacity: 0 }} value="" aria-label='' selected={false}></ToggleButton>
       </ToggleButtonGroup>
-    </Box>
+    </Box >
 
 
   )
@@ -73,12 +60,24 @@ const Controls = (props: Props) => {
 
 export default Controls
 
-const StyledToggleButton = styled(ToggleButton)(({ theme }) => ({
-  '& .Mui-selected': {
-    color: "black",
-    backgroundColor: "white",
+
+const StyledToggleButton = styled(ToggleButton)(() => ({
+  '&.MuiToggleButtonGroup-grouped:not(:last-of-type)': {
+    borderRadius: '8px !important',
+    border: "none",
+    width: "140px",
+    height: "52px",
+    backgroundColor: "rgb(213,212,205)",
+  }, '& .Mui-selected': {
+    backgroundColor: 'white',
+    color: 'black',
     '&:hover': {
-      backgroundColor: "white",
+      backgroundColor: 'white',
+      color: 'black',
     },
+  },
+  '&.Mui-selected:hover': {
+    backgroundColor: 'white',
+    color: 'black',
   },
 }))

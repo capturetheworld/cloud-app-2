@@ -14,15 +14,27 @@ export default function MusicControlCard() {
   const theme = useTheme()
 
   return (
-    <Card sx={{ display: 'flex' }}>
+    <Card
+      sx={{ backgroundColor: 'rgb(213,212,205)', width: "288px", height: "144px", borderRadius: "14px" }}
+      elevation={0}
+
+    >
       <Box sx={{ display: 'flex', flexDirection: 'column' }}>
-        <CardContent sx={{ flex: '1 0 auto' }}>
-          <Typography component="div" variant="h5">
-            Live From Space
-          </Typography>
-          <Typography variant="subtitle1" color="text.secondary" component="div">
-            Mac Miller
-          </Typography>
+        <CardContent sx={{ display: "flex", flexDirection: "row" }}>
+          <CardMedia
+            component="img"
+            sx={{ width: "64px", height: "64px", marginRight: "7px" }}
+            image={require("/assets/music/cover.png")}
+            alt="Live from space album cover"
+          /><Box>
+
+            <Typography component="div" variant="body2" noWrap sx={{ maxWidth: "160px" }}>
+              Live From Spaceeeeeeeeeee
+            </Typography>
+            <Typography variant="subtitle2" color="text.secondary" component="div" noWrap sx={{ maxWidth: "160px" }}>
+              Mac Miller
+            </Typography>
+          </Box>
         </CardContent>
         <Box sx={{ display: 'flex', alignItems: 'center', pl: 1, pb: 1 }}>
           <IconButton aria-label="previous">
@@ -36,12 +48,6 @@ export default function MusicControlCard() {
           </IconButton>
         </Box>
       </Box>
-      <CardMedia
-        component="img"
-        sx={{ width: 151 }}
-        image="/static/images/cards/live-from-space.jpg"
-        alt="Live from space album cover"
-      />
     </Card>
   )
 }

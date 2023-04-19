@@ -1,23 +1,32 @@
-import { Box, Card, Container, Grid, Paper, Stack, styled } from "@mui/material"
+import { Box, Card, Container, Paper, styled } from "@mui/material"
 import ClockWidget from "../components/ClockWidget"
-import useZusStore from "../data/zustand"
 import Controls from "./Controls"
 import Controls2 from "./Controls2"
 import ModelState from "./ModelState"
-
+import { useEffect } from "react"
+import { useQuery } from "react-query"
+import useZusStore from "../data/zustand"
 type Props = {}
 
 const CloudOSContainer = (props: Props) => {
-
   return (
     <Container fixed sx={{
-      backgroundColor: 'rgb(138, 138, 138)',
+      backgroundColor: 'rgb(176,176,170)',
       width: "768px", height: "1024px",
       maxWidth: "768px", maxHeight: "1024px",
       minWidth: "768px", minHeight: "1024px",
     }}
     >
-      <Card sx={{ backgroundColor: "rgba(255,255,255,.4)" }}>
+      <Card sx={{
+        width: "704px", height: "960px",
+        maxWidth: "704px", maxHeight: "960px",
+        minWidth: "704px", minHeight: "960px",
+        marginTop: "32px",
+        backgroundColor: "rgba(227,226,222)",
+        borderRadius: "32px"
+      }}
+        elevation={0}
+      >
 
         <Box sx={{ textAlign: "right" }}><ClockWidget /></Box>
 
@@ -39,12 +48,3 @@ const CloudOSContainer = (props: Props) => {
 }
 
 export default CloudOSContainer
-
-
-const Item = styled(Paper)(({ theme }) => ({
-  backgroundColor: theme.palette.mode === 'dark' ? '#1A2027' : '#fff',
-  ...theme.typography.body2,
-  padding: theme.spacing(1),
-  textAlign: 'center',
-  color: theme.palette.text.secondary,
-}))

@@ -19,15 +19,12 @@ export default function VerticalSlider({ valueLabelDisplay, icon, value }: Props
   React.useEffect(() => {
     setSlidervalue(value)
   }, [value])
-  const onChange = (event, newValue) => {
-    console.log('Slider value changed to', newValue)
+  const onChange = (_event: any, newValue: React.SetStateAction<number>) => {
     setSlidervalue(newValue)
   }
-  console.log("RENDERING SLIDER", slidervalue)
   return (
     <Box sx={{ height: 308 }}>
       <StyledSlider
-        // color="danger"
         icon={icon}
         marks={false}
         orientation="vertical"
@@ -63,18 +60,18 @@ const StyledSlider = styled(Slider, {
     '& .MuiSlider-track': {
       backgroundColor: "#FFFFFF",
       borderRadius: "12px",
-      width: "80%",
+      width: "83%",
       maxHeight: "97%",
-      marginBottom: "3.5px",
+      marginBottom: "4px",
       marginTop: "3.5px"
     },
     '& .MuiSlider-rail': {
       borderRadius: "12px",
-      width: "80%",
+      width: "58px",
       maxHeight: "97%",
-      marginBottom: "3.5px",
+      marginBottom: "7px",
       marginTop: "3.5px",
-      // backgroundColor: "#C5C4BD",
+      backgroundColor: "rgb(213,212,205)",
     },
     '& .MuiSlider-thumb': {
       width: "54px",
@@ -92,7 +89,6 @@ const StyledSlider = styled(Slider, {
     },
 
     '& .Mui-focusVisible': {
-      border: "10px solid red",
       outline: 'none',
       outlineOffset: 'none',
     },
