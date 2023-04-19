@@ -3,7 +3,7 @@ import Box from '@mui/material/Box'
 import Slider from '@mui/joy/Slider'
 import styled from '@emotion/styled'
 import {useEffect} from 'react';
-import {useCircuits, useSetCircuitLevel} from '../query'
+import {useCircuits, useSetCircuitLevel} from '../api'
 
 
 interface VerticalSliderProps {

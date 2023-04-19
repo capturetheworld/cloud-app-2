@@ -2,7 +2,7 @@
   "version": "1.0.0",
   "configurations": [
     {
-      "name": "Helper Test",
+      "name": "Frontend",
       "type": "chrome",
       "request": "launch",
       "url": "http://localhost:19007",
