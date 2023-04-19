@@ -1,0 +1,28 @@
+{
+  "version": "1.0.0",
+  "configurations": [
+    {
+      "name": "Helper Test",
+      "program": "${workspaceFolder}/cloud/test/testHelper.test.js",
+      "request": "launch",
+      "skipFiles": ["<node_internals>/**"],
+      "type": "node"
+    },
+
+    {
+      "name": "CloudReact",
+      "type": "chrome",
+      "request": "launch",
+      "url": "http://localhost:19007",
+      "webRoot": "${workspaceRoot}/cloud"
+    },
+
+    {
+      "name": "Spotify Cloud",
+      "type": "chrome",
+      "request": "launch",
+      "url": "http://localhost:19007",
+      "webRoot": "${workspaceRoot}/cloud-player"
+    }
+  ]
+}
