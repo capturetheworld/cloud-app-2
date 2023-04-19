@@ -22,7 +22,7 @@ export default ModelState
 
 const BackgroundImage = styled(Box)(() => ({
   backgroundColor: 'rgba(138,138,138,1)',
-  width: "80%",
+  width: "704px", height: "544px", height: "388px",
   display: "flex",
   alignSelf: "center",
 }))
