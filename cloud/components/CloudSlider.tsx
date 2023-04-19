@@ -2,13 +2,10 @@ import * as React from 'react'
 import Box from '@mui/material/Box'
 import Slider from '@mui/joy/Slider'
 import styled from '@emotion/styled'
-import {useEffect} from 'react';
-import {useCircuits, useSetCircuitLevel} from '../api'
 
 
-interface VerticalSliderProps {
+interface Props {
   valueLabelDisplay: boolean,
-  circuitName: string,
   icon?: string,
   value?: number
 }
@@ -33,7 +30,6 @@ export default function VerticalSlider({ valueLabelDisplay, icon, value }: Props
         // color="danger"
         icon={icon}
         marks={false}
-        value={sliderValue}
         orientation="vertical"
         size="lg"
         value={slidervalue}
