@@ -72,7 +72,7 @@ const handleUpdate = (msg) => {
 
 
         const slope = (targetLevel - l0) / Math.max(targetTime - t0, 1);
-        console.log("LEVEL", targetLevel - l0, 'TIME', targetTime - t0);
+        // console.log("LEVEL", targetLevel - l0, 'TIME', targetTime - t0);
         contexts[name] = {
             ...context,
             targetLevel,
@@ -95,7 +95,7 @@ const syncTime = async () => {
     try {
         const { data: serverTime } = await axios.get('/info/timestamp');
         offset = serverTime - Date.now();
-        console.log('OFFSET IS', offset);
+        // console.log('OFFSET IS', offset);
     }
     catch {
         console.error('there is a problem syncing time');
