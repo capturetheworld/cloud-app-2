@@ -53,6 +53,8 @@ const Controls2 = () => {
       <CloudSlider valueLabelDisplay={false} icon={icons.blinds} value={blinds} />
       <RightToggles />
 
+     
+
     </Box >
 
 

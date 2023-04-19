@@ -5,9 +5,13 @@ import { setScene } from "./api"
 import { StyleSheet, Image, View } from "react-native"
 import { useZusStore } from "./data/zustand"
 
-const queryClient = new QueryClient()
+// import { queryClient } from './api'
+// import { runTest } from './api/test/testHelper.test'
+// runTest();
+
 
 function App() {
+
   return (
     <QueryClientProvider client={queryClient}>
       <CloudOSContainer />
