@@ -1,14 +1,55 @@
-import { Box, Card, Container, Paper, styled } from "@mui/material"
+import { Box, Card, Container } from "@mui/material"
 import ClockWidget from "../components/ClockWidget"
 import Controls from "./Controls"
 import Controls2 from "./Controls2"
 import ModelState from "./ModelState"
-import { useEffect } from "react"
-import { useQuery } from "react-query"
-import useZusStore from "../data/zustand"
+import { sendValue, subscribeValue } from "../api/index.mjs"
+import { socket } from '../api/socket'
+import { useState, useEffect } from "react"
 type Props = {}
 
 const CloudOSContainer = (props: Props) => {
+  subscribeValue('punchBucket',
+    (value: any) => {
+      console.log("POTOAT CHIP", value)
+    })
+  const [isConnected, setIsConnected] = useState(socket.connected)
+  const [fooEvents, setFooEvents] = useState([])
+
+  useEffect(() => {
+    // no-op if the socket is already connected
+    socket.connect()
+
+    return () => {
+      socket.disconnect()
+    }
+  }, [])
+  useEffect(() => {
+    function onConnect() {
+      setIsConnected(true)
+      console.log("connected")
+    }
+
+    function onDisconnect() {
+      setIsConnected(false)
+      console.log("disconnected")
+    }
+
+    function onFooEvent(value) {
+      setFooEvents(previous => [...previous, value])
+    }
+
+    socket.on('connect', onConnect)
+    socket.on('disconnect', onDisconnect)
+    socket.on('foo', onFooEvent)
+
+    return () => {
+      socket.off('connect', onConnect)
+      socket.off('disconnect', onDisconnect)
+      socket.off('foo', onFooEvent)
+    }
+  }, [])
+
   return (
     <Container fixed sx={{
       backgroundColor: 'rgb(176,176,170)',

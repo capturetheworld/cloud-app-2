@@ -5,6 +5,7 @@ import MusicCard from '../components/MusicCard'
 import useZusStore from '../data/zustand'
 import ClimateControls from '../components/ClimateControls'
 import RightToggles from '../components/RightToggles'
+import { sendValue } from "../api/index.mjs"
 
 const Controls2 = () => {
   const { currentState, icons } = useZusStore((state) => state)
@@ -53,7 +54,7 @@ const Controls2 = () => {
       <CloudSlider valueLabelDisplay={false} icon={icons.blinds} value={blinds} />
       <RightToggles />
 
-     
+
 
     </Box >
 

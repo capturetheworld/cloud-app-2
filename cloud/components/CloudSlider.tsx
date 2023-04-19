@@ -2,6 +2,7 @@ import * as React from 'react'
 import Box from '@mui/material/Box'
 import Slider from '@mui/joy/Slider'
 import styled from '@emotion/styled'
+import { sendValue, subscribeValue } from "../api/index.mjs"
 
 
 interface Props {
@@ -21,6 +22,7 @@ export default function VerticalSlider({ valueLabelDisplay, icon, value }: Props
   }, [value])
   const onChange = (_event: any, newValue: React.SetStateAction<number>) => {
     setSlidervalue(newValue)
+    sendValue("ceilingFan", newValue)
   }
   return (
     <Box sx={{ height: 308 }}>
