@@ -3,14 +3,6 @@
   "configurations": [
     {
       "name": "Helper Test",
-      "program": "${workspaceFolder}/cloud/test/testHelper.test.js",
-      "request": "launch",
-      "skipFiles": ["<node_internals>/**"],
-      "type": "node"
-    },
-
-    {
-      "name": "CloudReact",
       "type": "chrome",
       "request": "launch",
       "url": "http://localhost:19007",

@@ -6,7 +6,6 @@ import { StyleSheet, Image, View } from "react-native"
 import { queryClient } from './query'
 // import './sliderHelper'
 import { runTest } from '../cloud/test/testHelper.test'
-
 runTest();
 
 
