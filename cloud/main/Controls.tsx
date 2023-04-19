@@ -1,6 +1,6 @@
 import { Box, ToggleButton, ToggleButtonGroup, Typography, styled } from '@mui/material'
 import useZusStore from '../data/zustand'
-import { setScene } from '../api'
+import { setScene } from '../api/index.mjs'
 
 
 const Controls = () => {
