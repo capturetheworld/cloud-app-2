@@ -6,18 +6,17 @@ import NestCamWiredStandOutlinedIcon from '@mui/icons-material/NestCamWiredStand
 import TuneOutlinedIcon from '@mui/icons-material/TuneOutlined'
 import MoreHorizOutlinedIcon from '@mui/icons-material/MoreHorizOutlined'
 import MusicCard from '../components/MusicCard'
+
 type Props = {}
 
 const Controls2 = (props: Props) => {
 
-  return (
 
-
-
+    return (
     <Box sx={{ display: "flex", flexDirection: "row", justifyContent: "space-between", padding: "14px" }}>
-
-      <CloudSlider />
-      <CloudSlider />
+     
+      <CloudSlider valueLabelDisplay={false} circuitName={'shrewd-juice'}></ CloudSlider>
+      {/* <CloudSlider valueLabelDisplay={false} circuitName=''></ CloudSlider> */}
       < Box sx={{
         display: "flex", flexDirection: "column", justifyContent: "space-between", alignItems: "center"
       }
@@ -25,7 +24,7 @@ const Controls2 = (props: Props) => {
         <Button variant="contained" size="small">Climate Controls</Button>
         <MusicCard />
       </Box >
-      <CloudSlider />
+      {/* <CloudSlider valueLabelDisplay={false} circuitName=''></ CloudSlider> */}
 
       <ToggleButtonGroup
         sx={{
@@ -36,6 +35,8 @@ const Controls2 = (props: Props) => {
         <ToggleButton value="bed" aria-label='toggle bed' size="small"><TuneOutlinedIcon /></ToggleButton>
         <ToggleButton value="bed" aria-label='toggle bed' size="small"><MoreHorizOutlinedIcon /></ToggleButton>
       </ToggleButtonGroup>
+
+     
 
     </Box >
 
