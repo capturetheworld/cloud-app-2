@@ -15,8 +15,6 @@ let offset = 0
 //runner function
 const run = () => {
   for (const context of Object.values(contexts)) {
-    // get rid of this
-    context.callback(context.currentLevel)
     // console.log('runner is running', context.slope);
     if (!!context.slope) {
       // console.log('runner is running');
@@ -68,16 +66,16 @@ const handleUpdate = (msg) => {
     const circuit = msg.value
     const name = circuit.name
     const context = contexts[name]
-    // context.currentLevel = circuit.state.value
+    context.currentLevel = circuit.state.value
     if (!context) return
 
     const t0 = Date.now()
     const l0 = context.currentLevel
-    // const targetLevel = circuit.state.level
-    // const targetTime = circuit.state.levelTs - offset
+    const targetLevel = circuit.state.level
+    const targetTime = circuit.state.levelTs - offset
 
-    // const slope = (targetLevel - l0) / Math.max(targetTime - t0, 1)
-    // console.log("LEVEL", targetLevel - l0, 'TIME', targetTime - t0);
+    const slope = (targetLevel - l0) / Math.max(targetTime - t0, 1)
+    console.log("LEVEL", targetLevel - l0, "TIME", targetTime - t0)
     contexts[name] = {
       ...context,
       targetLevel,
@@ -99,7 +97,7 @@ const syncTime = async () => {
     offset = serverTime - Date.now()
     // console.log('OFFSET IS', offset);
   } catch {
-    // console.error("there is a problem being fluffy and syncing time")
+    // console.error("there is a problem syncing time")
   }
 
   setTimeout(syncTime, 1000)
