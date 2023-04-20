@@ -15,7 +15,6 @@ let offset = 0
 //runner function
 const run = () => {
   for (const context of Object.values(contexts)) {
-    context.callback(context.currentLevel)
     // console.log('runner is running', context.slope);
     if (!!context.slope) {
       // console.log('runner is running');
@@ -38,11 +37,12 @@ const run = () => {
 
 export const subscribeValue = (name, callback) => {
   contexts[name] = { callback, currentLevel: 0 }
-  console.log("subscribeValue", contexts)
 }
 
 export const sendValue = (name, level) => {
   axios.put("/circuit/level", { name, level: (level * 255) / 100 })
+  // temp
+  if (contexts[name]) contexts[name].currentLevel = level
 }
 
 export const setScene = async (id) => {
@@ -62,7 +62,6 @@ socket.on("connect", () => {
 })
 
 const handleUpdate = (msg) => {
-  console.log("UPDATING", msg)
   if (msg.key === "Circuit") {
     const circuit = msg.value
     const name = circuit.name
@@ -76,7 +75,7 @@ const handleUpdate = (msg) => {
     const targetTime = circuit.state.levelTs - offset
 
     const slope = (targetLevel - l0) / Math.max(targetTime - t0, 1)
-    // console.log("LEVEL", targetLevel - l0, 'TIME', targetTime - t0);
+    console.log("LEVEL", targetLevel - l0, "TIME", targetTime - t0)
     contexts[name] = {
       ...context,
       targetLevel,
@@ -98,7 +97,7 @@ const syncTime = async () => {
     offset = serverTime - Date.now()
     // console.log('OFFSET IS', offset);
   } catch {
-    // console.error("there is a problem being fluffy and syncing time")
+    // console.error("there is a problem syncing time")
   }
 
   setTimeout(syncTime, 1000)

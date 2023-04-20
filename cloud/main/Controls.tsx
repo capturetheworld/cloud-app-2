@@ -4,11 +4,11 @@ import { setScene } from '../api/index.mjs'
 
 
 const Controls = () => {
-  const { SET_CURRENT_STATE, currentImageUrl, currentState, icons } = useZusStore((state) => state)
+  const { SET_CURRENT_STATE, currentState, icons } = useZusStore((state) => state)
 
   const changeImage = (e: React.MouseEvent<HTMLElement>, state: any) => {
     if (state !== null) {
-      SET_CURRENT_STATE(state)
+      SET_CURRENT_STATE(state) // <- this might be deletable
       setScene(state)
     }
   }

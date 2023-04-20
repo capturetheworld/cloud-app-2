@@ -2,28 +2,20 @@ import * as React from 'react'
 import Box from '@mui/material/Box'
 import Slider from '@mui/joy/Slider'
 import styled from '@emotion/styled'
-import { sendValue, subscribeValue } from "../api/index.mjs"
 
 
 interface Props {
   valueLabelDisplay: boolean,
   icon?: string,
   value?: number
+  circuit: string
+  onValueChange: (circuit: string, value: number) => void
 }
-export default function VerticalSlider({ valueLabelDisplay, icon, value }: Props) {
-  function preventHorizontalKeyboardNavigation(event: React.KeyboardEvent) {
-    if (event.key === 'ArrowLeft' || event.key === 'ArrowRight') {
-      event.preventDefault()
-    }
+export default function VerticalSlider({ valueLabelDisplay, icon, value, circuit, onValueChange }: Props) {
+  const onChange = (_event: any, newValue: number) => {
+    onValueChange(circuit, newValue)
   }
-  const [slidervalue, setSlidervalue] = React.useState(value || 100)
-  React.useEffect(() => {
-    setSlidervalue(value)
-  }, [value])
-  const onChange = (_event: any, newValue: React.SetStateAction<number>) => {
-    setSlidervalue(newValue)
-    sendValue("ceilingFan", newValue)
-  }
+
   return (
     <Box sx={{ height: 308 }}>
       <StyledSlider
@@ -31,7 +23,7 @@ export default function VerticalSlider({ valueLabelDisplay, icon, value }: Props
         marks={false}
         orientation="vertical"
         size="lg"
-        value={slidervalue}
+        value={value}
         onChange={onChange}
         valueLabelDisplay={"auto"}
         variant="plain"

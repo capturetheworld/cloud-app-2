@@ -1,13 +1,16 @@
 import { ToggleButtonGroup, ToggleButton, styled } from '@mui/material'
-import React, { useEffect, useState } from 'react'
+import React, { } from 'react'
 import useZusStore from '../data/zustand'
-
+import { sendValue } from "../api/index.mjs"
 type Props = {}
 
-const RightToggles = (props: Props) => {
+const RightToggles = () => {
 
-  const { currentState, buttonsClicked, icons, SET_BUTTON_CLICKED } = useZusStore((state) => state)
-
+  const { icons, circuits } = useZusStore((state) => state)
+  const buttonClick = (e, button) => {
+    e.preventDefault()
+    sendValue("button", circuits[button]?.value === 0 ? 100 : 0)
+  }
   return (
 
     <ToggleButtonGroup
@@ -16,26 +19,29 @@ const RightToggles = (props: Props) => {
       }}
     >
       <StyledToggleButton value="bed" aria-label='toggle bed'
-        onClick={(e) => { e.preventDefault(); SET_BUTTON_CLICKED("bed") }}
-        sx={{ backgroundColor: buttonsClicked.bed ? "white !important" : '' }}>
+        onClick={(e) => { buttonClick(e, "bed") }}
+        sx={{ backgroundColor: circuits.bed?.value ? "white !important" : '' }}>
         <img src={icons.bed} style={{ marginRight: "3.5px", marginBottom: "2px" }} />
       </ StyledToggleButton>
 
       <StyledToggleButton
-        onClick={(e) => { e.preventDefault(); SET_BUTTON_CLICKED("irobot") }}
-        sx={{ backgroundColor: buttonsClicked.irobot ? "white" : "" }}
+        onClick={(e) => { buttonClick(e, "irobot") }}
+        sx={{ backgroundColor: circuits.irobot?.value ? "white !important" : "" }}
         value="irobot" aria-label='toggle bed' size="small">
         <img src={icons.irobot} style={{ marginRight: "3.5px", marginBottom: "2px" }} />
       </StyledToggleButton>
 
       <StyledToggleButton
-        sx={{ backgroundColor: buttonsClicked.settings ? "white" : "" }}
-
+        sx={{ backgroundColor: circuits.settings?.value ? "white !important" : "" }}
+        onClick={(e) => { buttonClick(e, "settings") }}
         value="setting" aria-label='toggle x' size="small">
         <img src={icons.settings} style={{ marginRight: "3.5px", marginBottom: "2px" }} />
       </StyledToggleButton>
 
-      <StyledToggleButton value="more" aria-label='toggle xx' size="small">
+      <StyledToggleButton
+        value="more" aria-label='toggle xx' size="small"
+        onClick={(e) => { buttonClick(e, "more") }}
+      >
         <img src={icons.more} style={{ marginRight: "3.5px", marginBottom: "2px" }} />
       </StyledToggleButton>
     </ToggleButtonGroup >
@@ -47,7 +53,7 @@ export default RightToggles
 
 
 
-const StyledToggleButton = styled(ToggleButton)((props) => {
+const StyledToggleButton = styled(ToggleButton)(() => {
 
   return ({
     '&.MuiToggleButtonGroup-grouped:not(:last-of-type)': {
