@@ -5,7 +5,7 @@ import useZusStore from '../data/zustand'
 type Props = {}
 
 const ClimateControls = (props: Props) => {
-  const { icons } = useZusStore()
+  const { icons, circuits } = useZusStore()
   const { minus, plus } = icons
   return (
 

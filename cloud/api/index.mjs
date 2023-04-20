@@ -15,6 +15,7 @@ let offset = 0
 //runner function
 const run = () => {
   for (const context of Object.values(contexts)) {
+    // get rid of this
     context.callback(context.currentLevel)
     // console.log('runner is running', context.slope);
     if (!!context.slope) {
@@ -38,11 +39,12 @@ const run = () => {
 
 export const subscribeValue = (name, callback) => {
   contexts[name] = { callback, currentLevel: 0 }
-  console.log("subscribeValue", contexts)
 }
 
 export const sendValue = (name, level) => {
   axios.put("/circuit/level", { name, level: (level * 255) / 100 })
+  // temp
+  if (contexts[name]) contexts[name].currentLevel = level
 }
 
 export const setScene = async (id) => {
@@ -62,20 +64,19 @@ socket.on("connect", () => {
 })
 
 const handleUpdate = (msg) => {
-  console.log("UPDATING", msg)
   if (msg.key === "Circuit") {
     const circuit = msg.value
     const name = circuit.name
     const context = contexts[name]
-    context.currentLevel = circuit.state.value
+    // context.currentLevel = circuit.state.value
     if (!context) return
 
     const t0 = Date.now()
     const l0 = context.currentLevel
-    const targetLevel = circuit.state.level
-    const targetTime = circuit.state.levelTs - offset
+    // const targetLevel = circuit.state.level
+    // const targetTime = circuit.state.levelTs - offset
 
-    const slope = (targetLevel - l0) / Math.max(targetTime - t0, 1)
+    // const slope = (targetLevel - l0) / Math.max(targetTime - t0, 1)
     // console.log("LEVEL", targetLevel - l0, 'TIME', targetTime - t0);
     contexts[name] = {
       ...context,

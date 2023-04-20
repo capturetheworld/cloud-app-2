@@ -3,52 +3,34 @@ import ClockWidget from "../components/ClockWidget"
 import Controls from "./Controls"
 import Controls2 from "./Controls2"
 import ModelState from "./ModelState"
-import { sendValue, subscribeValue } from "../api/index.mjs"
-import { socket } from '../api/socket'
-import { useState, useEffect } from "react"
+import { subscribeValue } from "../api/index.mjs"
+import useZusStore from "../data/zustand"
 type Props = {}
 
 const CloudOSContainer = (props: Props) => {
-  subscribeValue('punchBucket',
-    (value: any) => {
-      console.log("POTOAT CHIP", value)
-    })
-  const [isConnected, setIsConnected] = useState(socket.connected)
-  const [fooEvents, setFooEvents] = useState([])
+  const { SET_REALTIME_STATE } = useZusStore()
+  const circuits = [
+    'ceilingLights',
+    'coveLights',
+    'blinds',
+    'bed',
+    'irobot',
+    'settings',
+    'more',
+    'temperature',
+    'home',
+    'away',
+    'bedtime',
+    'awake']
 
-  useEffect(() => {
-    // no-op if the socket is already connected
-    socket.connect()
+  // connect state to api
+  circuits.map((circuit) => {
+    subscribeValue(circuit,
+      (value) => {
+        SET_REALTIME_STATE({ circuit, value })
+      })
+  })
 
-    return () => {
-      socket.disconnect()
-    }
-  }, [])
-  useEffect(() => {
-    function onConnect() {
-      setIsConnected(true)
-      console.log("connected")
-    }
-
-    function onDisconnect() {
-      setIsConnected(false)
-      console.log("disconnected")
-    }
-
-    function onFooEvent(value) {
-      setFooEvents(previous => [...previous, value])
-    }
-
-    socket.on('connect', onConnect)
-    socket.on('disconnect', onDisconnect)
-    socket.on('foo', onFooEvent)
-
-    return () => {
-      socket.off('connect', onConnect)
-      socket.off('disconnect', onDisconnect)
-      socket.off('foo', onFooEvent)
-    }
-  }, [])
 
   return (
     <Container fixed sx={{
@@ -76,7 +58,6 @@ const CloudOSContainer = (props: Props) => {
           flexDirection: "column",
           padding: "7px",
         }}>
-
 
           <Box sx={{ display: "flex", alignItems: "cneter", justifyContent: "center" }}><ModelState /></Box>
           <Box sx={{ width: "100%" }}><Controls /></Box>

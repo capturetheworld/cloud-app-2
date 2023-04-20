@@ -1,9 +1,16 @@
 import { create } from 'zustand'
-
+type Circuit = {
+  name: string
+  value: number
+}
+type CircuitList = {
+  [key: string]: Circuit
+}
 export interface MainState {
   currentImageUrl: any
   currentState: string
   imageList: { awake: string, bedtime: string, hibernate: string, home: string },
+  circuits: CircuitList
   icons: {
     home: string
     away: string
@@ -28,7 +35,6 @@ export interface MainState {
 
   SET_CURRENT_STATE: (appState: any) => void
   SET_REALTIME_STATE: (appState: any) => void
-  SET_BUTTON_CLICKED: (button: any) => void
 
 }
 
@@ -40,6 +46,7 @@ const imageList = {
 }
 
 const useZusStore = create<MainState>((set) => ({
+  circuits: {},
   currentState: 'home',
   currentImageUrl: require('/assets/Awaken.png'),
   imageList: imageList,
@@ -89,18 +96,17 @@ const useZusStore = create<MainState>((set) => ({
     })
   },
 
-
-  SET_BUTTON_CLICKED: (button: any) => {
-    return set((state) => {
-      const buttonsClicked = state.buttonsClicked
-      buttonsClicked[button] = true
-      console.log(button, buttonsClicked)
-      return { buttonsClicked }
-    })
-  },
-
   SET_REALTIME_STATE: (appState: any) => {
-    console.log("SET_REALTIME_STATE", appState)
+    return set((state) => {
+      const circuits = state.circuits
+      const updatedCircuit = {
+        name: appState.circuit,
+        value: appState.value
+      }
+      circuits[appState.circuit] = updatedCircuit
+      // NB - might need to force a render here?
+      return { circuits }
+    })
   }
 }))
 
