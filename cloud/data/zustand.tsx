@@ -101,7 +101,7 @@ const useZusStore = create<MainState>((set) => ({
       const circuits = state.circuits
       const updatedCircuit = {
         name: circuit.circuit,
-        value: circuit.value
+        value: circuit.data
       }
       circuits[circuit.circuit] = updatedCircuit
       // NB - might need to force a render here?

@@ -23,7 +23,7 @@ export default function VerticalSlider({ valueLabelDisplay, icon, value, circuit
         marks={false}
         orientation="vertical"
         size="lg"
-        value={value}
+        value={value || 0}
         onChange={onChange}
         valueLabelDisplay={"auto"}
         variant="plain"
