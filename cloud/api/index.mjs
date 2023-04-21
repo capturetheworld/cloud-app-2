@@ -65,7 +65,7 @@ const handleUpdate = (msg) => {
     const name = circuit.name
     const context = contexts[name]
     const offset = globalOffset
-    context.currentLevel = circuit.state.value / 2
+    context.currentLevel = circuit.state.value
     if (!context) return
 
     const t0 = Date.now()
