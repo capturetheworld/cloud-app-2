@@ -2,7 +2,7 @@ import axios from "axios"
 import io from "socket.io-client"
 
 let contexts = {} //storage list of storage
-let offset = 0
+let globalOffset = 0
 
 /**
  *
@@ -41,8 +41,6 @@ export const subscribeValue = (name, callback) => {
 
 export const sendValue = (name, level) => {
   axios.put("/circuit/level", { name, level: (level * 255) / 100 })
-  // temp
-  if (contexts[name]) contexts[name].currentLevel = level
 }
 
 export const setScene = async (id) => {
@@ -66,6 +64,7 @@ const handleUpdate = (msg) => {
     const circuit = msg.value
     const name = circuit.name
     const context = contexts[name]
+    const offset = globalOffset
     context.currentLevel = circuit.state.value
     if (!context) return
 

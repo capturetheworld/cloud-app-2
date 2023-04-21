@@ -15,13 +15,15 @@ const Controls2 = () => {
       <CloudSlider
         valueLabelDisplay={false}
         icon={icons.ceiling}
-        value={circuits.ceilingLights?.value || 0} circuit="ceilingLights"
+        value={circuits.ceilingLights?.value} circuit="ceilingLights"
+        // value={circuits.ceilingLights?.value || currentSliderValue} circuit="ceilingLights"
         onValueChange={sendValue}
       />
       <CloudSlider
         valueLabelDisplay={false}
         icon={icons.cove}
-        value={circuits.coveLights?.value || 0} circuit="coveLights"
+        value={circuits.coveLights?.value} circuit="coveLights"
+        // value={circuits.coveLights?.value || currentSliderValue} circuit="coveLights"
         onValueChange={sendValue}
       />
 
@@ -33,7 +35,8 @@ const Controls2 = () => {
       <CloudSlider
         valueLabelDisplay={false}
         icon={icons.blinds}
-        value={circuits.blinds?.value || 0} circuit="blinds"
+        value={circuits.blinds?.value} circuit="blinds"
+        // value={circuits.blinds?.value || currentSliderValue} circuit="blinds"
         onValueChange={sendValue}
       />
       <RightToggles />

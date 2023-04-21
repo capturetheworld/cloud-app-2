@@ -23,11 +23,11 @@ const CloudOSContainer = (props: Props) => {
     'bedtime',
     'awake']
 
-  // connect state to api
+  // CONNECT TO API
   circuits.map((circuit) => {
     subscribeValue(circuit,
-      (value) => {
-        SET_REALTIME_STATE({ circuit, value })
+      (data) => {
+        SET_REALTIME_STATE({ circuit, data })
       })
   })
 

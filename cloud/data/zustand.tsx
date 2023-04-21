@@ -96,14 +96,14 @@ const useZusStore = create<MainState>((set) => ({
     })
   },
 
-  SET_REALTIME_STATE: (appState: any) => {
+  SET_REALTIME_STATE: (circuit: any) => {
     return set((state) => {
       const circuits = state.circuits
       const updatedCircuit = {
-        name: appState.circuit,
-        value: appState.value
+        name: circuit.circuit,
+        value: circuit.value
       }
-      circuits[appState.circuit] = updatedCircuit
+      circuits[circuit.circuit] = updatedCircuit
       // NB - might need to force a render here?
       return { circuits }
     })
