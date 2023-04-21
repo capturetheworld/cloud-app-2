@@ -7,7 +7,7 @@ type CircuitList = {
   [key: string]: Circuit
 }
 export interface MainState {
-  currentImageUrl: any
+  currentImageUrl: string
   currentState: string
   imageList: { awake: string, bedtime: string, hibernate: string, home: string },
   circuits: CircuitList
@@ -33,8 +33,8 @@ export interface MainState {
     more: boolean
   },
 
-  SET_CURRENT_STATE: (appState: any) => void
-  SET_REALTIME_STATE: (appState: any) => void
+  SET_CURRENT_STATE: (appState) => void
+  SET_REALTIME_STATE: (appState) => void
 
 }
 
@@ -55,8 +55,8 @@ const useZusStore = create<MainState>((set) => ({
     away: require('/assets/buttons/away.png'),
     bedtime: require('/assets/buttons/moon.png'),
     awake: require('/assets/buttons/morning.png'),
-    minus: require("/assets/minus.png"),
-    plus: require("/assets/plus.png"),
+    minus: require('/assets/minus.png'),
+    plus: require('/assets/plus.png'),
     ceiling: require('/assets/sliders/ceiling-light.png'),
     cove: require('/assets/sliders/cove-lights.png'),
     blinds: require('/assets/sliders/blinds.png'),
@@ -71,11 +71,10 @@ const useZusStore = create<MainState>((set) => ({
     settings: false,
     more: false
   },
-  // @ts-ignore
-  SET_CURRENT_STATE: (appState: any) => {
+  SET_CURRENT_STATE: (appState) => {
     return set((state) => {
       const buttonsClicked = state.buttonsClicked
-      for (let button in buttonsClicked) {
+      for (const button in buttonsClicked) {
         buttonsClicked[button] = false
       }
       switch (appState) {
@@ -96,7 +95,7 @@ const useZusStore = create<MainState>((set) => ({
     })
   },
 
-  SET_REALTIME_STATE: (circuit: any) => {
+  SET_REALTIME_STATE: (circuit) => {
     return set((state) => {
       const circuits = state.circuits
       const updatedCircuit = {

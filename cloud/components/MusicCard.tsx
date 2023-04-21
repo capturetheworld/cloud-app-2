@@ -1,4 +1,3 @@
-import * as React from 'react'
 import { useTheme } from '@mui/material/styles'
 import Box from '@mui/material/Box'
 import Card from '@mui/material/Card'
@@ -15,35 +14,34 @@ export default function MusicControlCard() {
 
   return (
     <Card
-      sx={{ backgroundColor: 'rgb(213,212,205)', width: "288px", height: "144px", borderRadius: "14px" }}
+      sx={{ backgroundColor: 'rgb(213,212,205)', width: '288px', height: '144px', borderRadius: '14px' }}
       elevation={0}
-
     >
       <Box sx={{ display: 'flex', flexDirection: 'column' }}>
-        <CardContent sx={{ display: "flex", flexDirection: "row" }}>
+        <CardContent sx={{ display: 'flex', flexDirection: 'row' }}>
           <CardMedia
-            component="img"
-            sx={{ width: "64px", height: "64px", marginRight: "7px" }}
-            image={require("/assets/music/cover.png")}
-            alt="Live from space album cover"
+            component='img'
+            sx={{ width: '64px', height: '64px', marginRight: '7px' }}
+            image={require('/assets/music/cover.png')}
+            alt='Live from space album cover'
           /><Box>
 
-            <Typography component="div" variant="body2" noWrap sx={{ maxWidth: "160px" }}>
+            <Typography component='div' variant='body2' noWrap sx={{ maxWidth: '160px' }}>
               Live From Spaceeeeeeeeeee
             </Typography>
-            <Typography variant="subtitle2" color="text.secondary" component="div" noWrap sx={{ maxWidth: "160px" }}>
+            <Typography variant='subtitle2' color='text.secondary' component='div' noWrap sx={{ maxWidth: '160px' }}>
               Mac Miller
             </Typography>
           </Box>
         </CardContent>
         <Box sx={{ display: 'flex', alignItems: 'center', pl: 1, pb: 1 }}>
-          <IconButton aria-label="previous">
+          <IconButton aria-label='previous'>
             {theme.direction === 'rtl' ? <SkipNextIcon /> : <SkipPreviousIcon />}
           </IconButton>
-          <IconButton aria-label="play/pause">
+          <IconButton aria-label='play/pause'>
             <PlayArrowIcon sx={{ height: 38, width: 38 }} />
           </IconButton>
-          <IconButton aria-label="next">
+          <IconButton aria-label='next'>
             {theme.direction === 'rtl' ? <SkipPreviousIcon /> : <SkipNextIcon />}
           </IconButton>
         </Box>

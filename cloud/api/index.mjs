@@ -1,5 +1,5 @@
-import axios from "axios"
-import io from "socket.io-client"
+import axios from 'axios'
+import io from 'socket.io-client'
 
 let contexts = {} //storage list of storage
 let globalOffset = 0
@@ -16,7 +16,7 @@ let globalOffset = 0
 const run = () => {
   for (const context of Object.values(contexts)) {
     // console.log('runner is running', context.slope);
-    if (!!context.slope) {
+    if (!!context.slope || context.slope === 0) {
       // console.log('runner is running');
       const now = Date.now()
       const lastLevel = context.currentLevel
@@ -40,27 +40,27 @@ export const subscribeValue = (name, callback) => {
 }
 
 export const sendValue = (name, level) => {
-  axios.put("/circuit/level", { name, level: (level * 255) / 100 })
+  axios.put('/circuit/level', { name, level: (level * 255) / 100 })
 }
 
 export const setScene = async (id) => {
   try {
     console.log(`setting scene to ${id}`)
     await fetch(`/circuit/scene/${id}`, {
-      method: "PUT",
+      method: 'PUT',
     })
   } catch (error) {
     console.error(`error setting scene ${id}: ${error}`)
   }
 }
 
-const socket = io.connect("localhost:3000")
-socket.on("connect", () => {
-  console.log("socket connected")
+const socket = io.connect('localhost:3000')
+socket.on('connect', () => {
+  console.log('socket connected')
 })
 
 const handleUpdate = (msg) => {
-  if (msg.key === "Circuit") {
+  if (msg.key === 'Circuit') {
     const circuit = msg.value
     const name = circuit.name
     const context = contexts[name]
@@ -74,7 +74,7 @@ const handleUpdate = (msg) => {
     const targetTime = circuit.state.levelTs - offset
 
     const slope = (targetLevel - l0) / Math.max(targetTime - t0, 1)
-    console.log("LEVEL", targetLevel - l0, "TIME", targetTime - t0)
+    console.log('LEVEL', targetLevel - l0, 'TIME', targetTime - t0)
     contexts[name] = {
       ...context,
       targetLevel,
@@ -88,11 +88,11 @@ const handleUpdate = (msg) => {
 
 export const _f_handleUpdate = handleUpdate
 
-socket.on("update", handleUpdate)
+socket.on('update', handleUpdate)
 
 const syncTime = async () => {
   try {
-    const { data: serverTime } = await axios.get("/info/timestamp")
+    const { data: serverTime } = await axios.get('/info/timestamp')
     offset = serverTime - Date.now()
     // console.log('OFFSET IS', offset);
   } catch {

@@ -1,30 +1,28 @@
-import { Box, Card, CardHeader, Typography } from '@mui/material'
-import React from 'react'
+import { Box, Card, Typography } from '@mui/material'
 import useZusStore from '../data/zustand'
 
-type Props = {}
 
-const ClimateControls = (props: Props) => {
-  const { icons, circuits } = useZusStore()
+const ClimateControls = () => {
+  const { icons } = useZusStore()
   const { minus, plus } = icons
   return (
 
     <Card
       sx={{
         backgroundColor: 'rgb(213,212,205)',
-        width: "288px",
-        height: "144px",
-        borderRadius: "14px",
-        display: "flex",
-        flexDirection: "column",
-        justifyContent: "space-between",
-        paddingBottom: "14px",
-        alignItems: "center"
+        width: '288px',
+        height: '144px',
+        borderRadius: '14px',
+        display: 'flex',
+        flexDirection: 'column',
+        justifyContent: 'space-between',
+        paddingBottom: '14px',
+        alignItems: 'center'
       }}
       elevation={0}
     >
-      <Box sx={{ width: "100%", marginTop: "10px" }}>
-        <Typography variant="caption" sx={{ textAlign: "left", marginLeft: "16px" }}>
+      <Box sx={{ width: '100%', marginTop: '10px' }}>
+        <Typography variant='caption' sx={{ textAlign: 'left', marginLeft: '16px' }}>
           Temperature <b>65°F</b>
         </Typography>
       </Box>
@@ -34,25 +32,25 @@ const ClimateControls = (props: Props) => {
       <Box
         onClick={e => {
           e.preventDefault()
-          alert("DOWN")
+          alert('DOWN')
         }}
         sx={{
-          display: "flex",
-          flexDirection: "row",
-          justifyContent: "center",
-          alignItems: "space-between"
+          display: 'flex',
+          flexDirection: 'row',
+          justifyContent: 'center',
+          alignItems: 'space-between'
         }}
       >
         {/* MINUS button */}
         <Box sx={{
           ...buttonStyle,
-          marginRight: "16px",
+          marginRight: '16px',
           backgroundImage: `url(${minus})`,
         }} />
         <Box >
 
           {/* Temp Control */}
-          <Typography variant="h3">
+          <Typography variant='h3'>
             75°F
           </Typography>
         </Box>
@@ -61,11 +59,11 @@ const ClimateControls = (props: Props) => {
         <Box
           onClick={e => {
             e.preventDefault()
-            alert("UP")
+            alert('UP')
           }}
           sx={{
             ...buttonStyle,
-            marginLeft: "16px",
+            marginLeft: '16px',
             backgroundImage: `url(${plus})`,
           }} />
       </Box>
@@ -78,9 +76,9 @@ export default ClimateControls
 
 
 const buttonStyle = {
-  width: "32px",
-  height: "32px",
-  marginTop: "10px",
-  backgroundSize: "contain",
-  backgroundRepeat: "no-repeat",
+  width: '32px',
+  height: '32px',
+  marginTop: '10px',
+  backgroundSize: 'contain',
+  backgroundRepeat: 'no-repeat',
 }

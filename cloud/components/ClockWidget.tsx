@@ -1,16 +1,15 @@
 import { Box, Typography } from '@mui/material'
-import React, { useEffect, useState } from 'react'
+import { useEffect, useState } from 'react'
 import { useQuery } from 'react-query'
 import Image from 'mui-image'
 
-type Props = {}
 
-const ClockWidget = (props: Props) => {
-  const daysOfWeek = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"]
-  const months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"]
+const ClockWidget = () => {
+  const daysOfWeek = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat']
+  const months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']
 
-  const [currentTime, setCurrentTime] = useState<any>('')
-  const [currentDate, setCurrentDate] = useState<any>('')
+  const [currentTime, setCurrentTime] = useState<string>('')
+  const [currentDate, setCurrentDate] = useState<string>('')
 
   const weatherApi = '5bdd307cffd3143892003f9b005f4ead'
   const weatherProps = {
@@ -61,7 +60,7 @@ const ClockWidget = (props: Props) => {
   }, [])
 
   return (
-    <Box sx={{ paddingRight: "14px", marginTop: "21px", marginRight: "14px" }}>
+    <Box sx={{ paddingRight: '14px', marginTop: '21px', marginRight: '14px' }}>
       <Box>
         <Typography>
           {currentDate || 'Loading...'}
@@ -73,7 +72,7 @@ const ClockWidget = (props: Props) => {
         </Typography>
 
       </Box>
-      <Box sx={{ display: "flex", flexDirection: "row", justifyContent: 'flex-end', alignItems: "Center" }}>
+      <Box sx={{ display: 'flex', flexDirection: 'row', justifyContent: 'flex-end', alignItems: 'Center' }}>
         {weatherData && <Image src={`https://openweathermap.org/img/wn/${weatherData.current.weather[0].icon}.png`} width={'28px'} /> || 'Loading...'}
         {weatherData && `${Math.round(weatherData.current.temp)}°F`}</Box>
 
@@ -82,7 +81,5 @@ const ClockWidget = (props: Props) => {
 }
 
 export default ClockWidget
-
-
 
 //onecall?lat=${weatherProps.lat}&lon=${weatherProps.lon}&exclude=minutely,hourly,alerts&units=${weatherProps.units}&

@@ -1,60 +1,48 @@
 {
-  "env": {
-    "browser": true,
-    "commonjs": true,
-    "es6": true,
-    "node": true
-  },
-  "extends": ["eslint:recommended", "plugin:react/recommended"],
-  "globals": {
-    "Atomics": "readonly",
-    "SharedArrayBuffer": "readonly"
-  },
+  "parser": "@typescript-eslint/parser",
+  "extends": [
+    "plugin:react/recommended",
+    "plugin:@typescript-eslint/recommended",
+    "prettier"
+  ],
+  "plugins": [
+    "react",
+    "@typescript-eslint",
+    "react-hooks"
+  ],
   "parserOptions": {
-    "parser": "babel-eslint",
+    "ecmaVersion": 2020,
+    "sourceType": "module",
     "ecmaFeatures": {
       "jsx": true
-    },
-    "ecmaVersion": 2020,
-    "sourceType": "module"
+    }
   },
-  "plugins": ["react", "react-hooks"],
   "settings": {
     "react": {
       "version": "detect"
     }
   },
-  "ignorePatterns": ["**/__generated__/*.js"],
   "rules": {
+    "semi": [
+      "error",
+      "never"
+    ],
     "indent": [
       "error",
-      4,
+      2,
       {
         "SwitchCase": 1
       }
     ],
-    "linebreak-style": ["error", "unix"],
+    "react-hooks/rules-of-hooks": "error",
+    "react-hooks/exhaustive-deps": "warn",
     "quotes": [
       "error",
-      "single",
-      {
-        "avoidEscape": true
-      }
+      "single"
     ],
-    "semi": ["error", "always"],
-    "no-unused-vars": [
-      "error",
-      {
-        "ignoreRestSiblings": true
-      }
-    ],
-    "no-return-await": 2,
-    "no-multiple-empty-lines": "error",
-    "eol-last": "error",
+    "@typescript-eslint/explicit-module-boundary-types": "off",
+    "@typescript-eslint/no-empty-interface": "off",
     "react/react-in-jsx-scope": "off",
-    "react/jsx-uses-react": "off",
-    "react/prop-types": "warn",
-    "react-hooks/rules-of-hooks": "error", // Checks rules of Hooks
-    "react-hooks/exhaustive-deps": "warn" // Checks effect dependencies
+    "@typescript-eslint/no-explicit-any": "off"
   }
 }
