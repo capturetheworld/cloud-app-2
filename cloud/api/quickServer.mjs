@@ -1,8 +1,9 @@
+import { Server } from "socket.io"
 import express from "express"
+
 const app = express()
 const port = 3000
-
-import { Server } from "socket.io"
+app.use(express.json())
 
 const server = app.listen(port, () =>
   console.log(`Example app listening on port ${port}!`)
@@ -25,19 +26,24 @@ app.get("/info/timestamp", (req, res) => {
 
 app.put("/circuit/level", (req, res) => {
   console.log("PUT", req.body)
-  res.send({ data: 0 })
-  socketIo.emit("update", {
+  res.send(200)
+
+  // TODO: REMOVE THIS. Circuit socket delay emulation ///////////
+  const msg = {
     key: "Circuit",
     value: {
-      name: "ceilingFan",
+      name: req.body.name,
       state: {
-        value: Math.random(),
+        value: req.body.level,
         level: 0,
-        levelTs: 99,
+        levelTs: 1,
       },
     },
-  })
+  }
+  setTimeout(() => socketIo.emit("update", msg), 1000)
+  //////////////////////////////////////////////
 })
+
 app.put("/circuit/scene/:id", (req, res) => {
   console.log("PUT", req.id)
   res.send({ data: 0 })
@@ -60,18 +66,4 @@ socketIo.on("connection", (socket) => {
   socket.on("disconnect", () => {
     console.log("A user disconnected")
   })
-
-  // Read message recieved from client.
-  socket.on("ceilingFan", (data) => {
-    console.log("ceilingFan: ", data)
-  })
-
-  // Send a message to the connected client 5 seconds after the connection is created.
-  setTimeout(() => {
-    socket.emit("update", {
-      key: "Circuit",
-      value: Math.random(),
-      name: "ceilingFan",
-    })
-  }, 5_000)
 })

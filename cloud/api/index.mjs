@@ -2,7 +2,7 @@ import axios from "axios"
 import io from "socket.io-client"
 
 let contexts = {} //storage list of storage
-let offset = 0
+let globalOffset = 0
 
 /**
  *
@@ -64,13 +64,16 @@ socket.on("connect", () => {
 const handleUpdate = (msg) => {
   if (msg.key === "Circuit") {
     const circuit = msg.value
+    console.log("CIRCUIT", circuit)
     const name = circuit.name
     const context = contexts[name]
+    const offset = globalOffset
     context.currentLevel = circuit.state.value
     if (!context) return
 
     const t0 = Date.now()
     const l0 = context.currentLevel
+    // TODO: UNCOMMENT THIS ////////////
     const targetLevel = circuit.state.level
     const targetTime = circuit.state.levelTs - offset
 
@@ -105,6 +108,7 @@ const syncTime = async () => {
 
 const start = () => {
   syncTime()
+  // TODO: SET BACK TO 100ms
   setInterval(run, 100)
 }
 
