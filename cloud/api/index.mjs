@@ -41,8 +41,6 @@ export const subscribeValue = (name, callback) => {
 
 export const sendValue = (name, level) => {
   axios.put("/circuit/level", { name, level: (level * 255) / 100 })
-  // temp
-  if (contexts[name]) contexts[name].currentLevel = level
 }
 
 export const setScene = async (id) => {
@@ -73,7 +71,6 @@ const handleUpdate = (msg) => {
 
     const t0 = Date.now()
     const l0 = context.currentLevel
-    // TODO: UNCOMMENT THIS ////////////
     const targetLevel = circuit.state.level
     const targetTime = circuit.state.levelTs - offset
 
@@ -108,7 +105,6 @@ const syncTime = async () => {
 
 const start = () => {
   syncTime()
-  // TODO: SET BACK TO 100ms
   setInterval(run, 100)
 }
 
