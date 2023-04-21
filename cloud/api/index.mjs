@@ -16,7 +16,7 @@ let globalOffset = 0
 const run = () => {
   for (const context of Object.values(contexts)) {
     // console.log('runner is running', context.slope);
-    if (!!context.slope) {
+    if (!!context.slope || context.slope === 0) {
       // console.log('runner is running');
       const now = Date.now()
       const lastLevel = context.currentLevel
