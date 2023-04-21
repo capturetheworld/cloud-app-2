@@ -62,7 +62,6 @@ socket.on("connect", () => {
 const handleUpdate = (msg) => {
   if (msg.key === "Circuit") {
     const circuit = msg.value
-    console.log("CIRCUIT", circuit)
     const name = circuit.name
     const context = contexts[name]
     const offset = globalOffset
