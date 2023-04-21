@@ -11,7 +11,7 @@ interface Props {
   circuit: string
   onValueChange: (circuit: string, value: number) => void
 }
-export default function VerticalSlider({ valueLabelDisplay, icon, value, circuit, onValueChange }: Props) {
+export default function VerticalSlider({ icon, value, circuit, onValueChange }: Props) {
   const onChange = (_event: any, newValue: number) => {
     onValueChange(circuit, newValue)
   }
@@ -25,15 +25,15 @@ export default function VerticalSlider({ valueLabelDisplay, icon, value, circuit
         size="lg"
         value={value || 0}
         onChange={onChange}
-        valueLabelDisplay={"auto"}
+        valueLabelDisplay={'auto'}
         variant="plain"
         // onChangeCommitted={() => alert("Dang")}
         sx={{
-          "--Slider-track-size": "21px",
-          "--Slider-mark-size": "0px",
-          "--Slider-thumb-size": "0px",
-          "--Slider-thumb-width": "0px",
-          "--Slider-valueLabel-arrowSize": "0px",
+          '--Slider-track-size': '21px',
+          '--Slider-mark-size': '0px',
+          '--Slider-thumb-size': '0px',
+          '--Slider-thumb-width': '0px',
+          '--Slider-valueLabel-arrowSize': '0px',
           borderRadius: '14px',
         }}
       />
@@ -50,33 +50,33 @@ const StyledSlider = styled(Slider, {
   return ({
     backgroundColor: '#D5D4CD',
     borderRadius: '14px',
-    width: "70px",
+    width: '70px',
     '& .MuiSlider-track': {
-      backgroundColor: "#FFFFFF",
-      borderRadius: "12px",
-      width: "83%",
-      maxHeight: "97%",
-      marginBottom: "4px",
-      marginTop: "3.5px"
+      backgroundColor: '#FFFFFF',
+      borderRadius: '12px',
+      width: '83%',
+      maxHeight: '97%',
+      marginBottom: '4px',
+      marginTop: '3.5px'
     },
     '& .MuiSlider-rail': {
-      borderRadius: "12px",
-      width: "58px",
-      maxHeight: "97%",
-      marginBottom: "7px",
-      marginTop: "3.5px",
-      backgroundColor: "rgb(213,212,205)",
+      borderRadius: '12px',
+      width: '58px',
+      maxHeight: '97%',
+      marginBottom: '7px',
+      marginTop: '3.5px',
+      backgroundColor: 'rgb(213,212,205)',
     },
     '& .MuiSlider-thumb': {
-      width: "54px",
-      height: "54px",
-      backgroundRepeat: "no-repeat",
-      backgroundAttachment: "fixed",
-      backgroundPosition: "center",
+      width: '54px',
+      height: '54px',
+      backgroundRepeat: 'no-repeat',
+      backgroundAttachment: 'fixed',
+      backgroundPosition: 'center',
       backgroundColor: 'transparent',
       backgroundImage: `url(${prop.icon})`,
       marginBottom: `${(-prop.value * .5) + 21}px`,
-      marginTop: "3.5px",
+      marginTop: '3.5px',
       '&::before': {
         border: 'none',
       }

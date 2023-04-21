@@ -13,39 +13,39 @@ const Controls = () => {
     }
   }
   return (
-    <Box sx={{ display: "flex", flexDirection: "column", padding: "14px" }}>
+    <Box sx={{ display: 'flex', flexDirection: 'column', padding: '14px' }}>
       <ToggleButtonGroup
         exclusive
         onChange={changeImage}
         value={currentState}
         sx={{
-          display: "flex",
-          flexDirection: "row",
-          alignItems: "center",
-          justifyContent: "space-between"
+          display: 'flex',
+          flexDirection: 'row',
+          alignItems: 'center',
+          justifyContent: 'space-between'
         }}>
-        <StyledToggleButton value="home" aria-label='Home' selected={currentState === "home"}
+        <StyledToggleButton value="home" aria-label='Home' selected={currentState === 'home'}
         >
-          <img src={icons.home} style={{ marginRight: "3.5px", marginBottom: "2px" }} />
+          <img src={icons.home} style={{ marginRight: '3.5px', marginBottom: '2px' }} />
           <Typography>
             Home
           </Typography>
         </StyledToggleButton>
-        <StyledToggleButton value="hibernate" aria-label='Away' selected={currentState === "hibernate"}>
-          <img src={icons.away} style={{ marginRight: "3.5px", marginBottom: "2px" }} />
+        <StyledToggleButton value="hibernate" aria-label='Away' selected={currentState === 'hibernate'}>
+          <img src={icons.away} style={{ marginRight: '3.5px', marginBottom: '2px' }} />
           <Typography>
             Away
           </Typography>
         </StyledToggleButton>
-        <StyledToggleButton value="bedtime" aria-label='Bedtime' selected={currentState === "bedtime"}>
-          <img src={icons.bedtime} style={{ marginRight: "3.5px", marginBottom: "2px" }} />
+        <StyledToggleButton value="bedtime" aria-label='Bedtime' selected={currentState === 'bedtime'}>
+          <img src={icons.bedtime} style={{ marginRight: '3.5px', marginBottom: '2px' }} />
           <Typography>
             Bedtime
           </Typography>
         </StyledToggleButton>
-        <StyledToggleButton sx={{ backgroundColor: currentState === "awake" ? "white" : "", borderRadius: "14px" }}
-          value="awake" aria-label='Morning' selected={currentState === "awake"}>
-          <img src={icons.awake} style={{ marginRight: "3.5px", marginBottom: "2px" }} />
+        <StyledToggleButton sx={{ backgroundColor: currentState === 'awake' ? 'white' : '', borderRadius: '14px' }}
+          value="awake" aria-label='Morning' selected={currentState === 'awake'}>
+          <img src={icons.awake} style={{ marginRight: '3.5px', marginBottom: '2px' }} />
           <Typography>
             Morning
           </Typography>
@@ -64,10 +64,10 @@ export default Controls
 const StyledToggleButton = styled(ToggleButton)(() => ({
   '&.MuiToggleButtonGroup-grouped:not(:last-of-type)': {
     borderRadius: '8px !important',
-    border: "none",
-    width: "140px",
-    height: "52px",
-    backgroundColor: "rgb(213,212,205)",
+    border: 'none',
+    width: '140px',
+    height: '52px',
+    backgroundColor: 'rgb(213,212,205)',
   }, '& .Mui-selected': {
     backgroundColor: 'white',
     color: 'black',

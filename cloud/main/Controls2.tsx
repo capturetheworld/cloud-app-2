@@ -1,17 +1,17 @@
 import { Box } from '@mui/material'
-import React, { useEffect, useState } from 'react'
+import React from 'react'
 import CloudSlider from '../components/CloudSlider'
 import MusicCard from '../components/MusicCard'
 import useZusStore from '../data/zustand'
 import ClimateControls from '../components/ClimateControls'
 import RightToggles from '../components/RightToggles'
-import { sendValue } from "../api/index.mjs"
+import { sendValue } from '../api/index.mjs'
 
 const Controls2 = () => {
-  const { currentState, icons, circuits } = useZusStore((state) => state)
+  const { icons, circuits } = useZusStore((state) => state)
 
   return (
-    <Box sx={{ display: "flex", flexDirection: "row", justifyContent: "space-between", padding: "14px" }}>
+    <Box sx={{ display: 'flex', flexDirection: 'row', justifyContent: 'space-between', padding: '14px' }}>
       <CloudSlider
         valueLabelDisplay={false}
         icon={icons.ceiling}
@@ -27,7 +27,7 @@ const Controls2 = () => {
         onValueChange={sendValue}
       />
 
-      < Box sx={{ display: "flex", flexDirection: "column", justifyContent: "space-between", alignItems: "center" }}>
+      < Box sx={{ display: 'flex', flexDirection: 'column', justifyContent: 'space-between', alignItems: 'center' }}>
         <ClimateControls />
         <MusicCard />
       </Box >
