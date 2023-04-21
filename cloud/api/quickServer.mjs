@@ -28,20 +28,19 @@ app.put("/circuit/level", (req, res) => {
   console.log("PUT", req.body)
   res.send(200)
 
-  // TODO: REMOVE THIS. Circuit socket delay emulation ///////////
+  //  Circuit socket delay emulation ///////////
   const msg = {
     key: "Circuit",
     value: {
       name: req.body.name,
       state: {
         value: req.body.level,
-        level: 0,
+        level: req.body.level,
         levelTs: 1,
       },
     },
   }
   setTimeout(() => socketIo.emit("update", msg), 1000)
-  ////////END TODO//////////////////////////////////////
 })
 
 app.put("/circuit/scene/:id", (req, res) => {
@@ -51,19 +50,4 @@ app.put("/circuit/scene/:id", (req, res) => {
 
 socketIo.on("connection", (socket) => {
   console.log("New connection created")
-
-  // Get the auth token provided on handshake.
-  const token = socket.handshake.auth.token
-  console.log("Auth token", token)
-
-  try {
-    // Verify the token here and get user info from JWT token.
-  } catch (error) {
-    socket.disconnect(true)
-  }
-
-  // A client is disconnected.
-  socket.on("disconnect", () => {
-    console.log("A user disconnected")
-  })
 })
