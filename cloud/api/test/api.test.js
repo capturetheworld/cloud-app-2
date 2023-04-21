@@ -1,8 +1,8 @@
-import { subscribeValue, sendValue, __handleUpdate } from "../index.mjs"
+import { subscribeValue } from '../index.mjs'
 
 export const runTest = () => {
-  subscribeValue("shrewd-juice", (value) => {
-    // console.log("shrewd-juice ", value);
+  subscribeValue('shrewd-juice', (value) => {
+    console.log('shrewd-juice ', value)
   })
 }
 
