@@ -44,7 +44,6 @@ const run = () => {
         for (const name in contexts) {
             const context = contexts[name];
             if (!context.testModeData) {
-                console.log('initialize testModeData', context);
                 context.testModeData = {
                     holdUntil: 0
                 }
@@ -54,8 +53,8 @@ const run = () => {
             const now = Date.now();
 
             if (now > holdUntil) {
-                console.log('set next transition', holdUntil);
                 const nextLevel = targetLevel ? 0 : 255;
+                console.log('set next transition',name, nextLevel);
                 handleUpdate({
                     key: 'Circuit',
                     value: {
@@ -74,13 +73,26 @@ const run = () => {
 
 
 export const subscribeValue = (name, callback) => {
-    contexts[name] = { ...contexts[name], callback, currentLevel: 0 }
+    contexts[name] = { currentLevel: 0, ...contexts[name], callback,  }
 }
 
 export const sendValue = (name, level) => {
     axios.put('/circuit/level', { name, level: (level * 255) / 100 })
     if (_testMode) {
+        const now = Date.now();
         contexts[name].testModeData.holdUntil = Date.now() + 10000;
+        setTimeout(() => {
+            handleUpdate({
+                key: 'Circuit',
+                value: {
+                    name,
+                    state: {
+                        level,
+                        levelTs: now
+                    }
+                }
+            })
+        }, 500);
     }
 }
 
@@ -102,7 +114,6 @@ socket.on('connect', () => {
 
 const handleUpdate = (msg) => {
     if (msg.key === 'Circuit') {
-        console.log('Circuit update', msg.value);
         const circuit = msg.value
         const name = circuit.name
         const context = contexts[name]
@@ -111,12 +122,11 @@ const handleUpdate = (msg) => {
 
         const t0 = Date.now()
         const l0 = context.currentLevel
-        const targetLevel = circuit.state.level
+        const targetLevel = circuit.state.level * 100 / 255
         const targetTime = circuit.state.levelTs - offset
 
         const slope = (targetLevel - l0) / Math.max(targetTime - t0, 1)
-        console.log('LEVEL', targetLevel - l0, 'TIME', targetTime - t0)
-        console.log('set context', context)
+        console.log('LEVEL', targetLevel - l0, 'TIME', targetTime - t0, slope, l0)
         contexts[name] = {
             ...context,
             targetLevel,
@@ -125,7 +135,6 @@ const handleUpdate = (msg) => {
             t0,
             l0
         }
-        console.log('after set', contexts[name]);
     }
 }
 

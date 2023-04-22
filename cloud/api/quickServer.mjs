@@ -34,7 +34,6 @@ app.put('/circuit/level', (req, res) => {
     value: {
       name: req.body.name,
       state: {
-        value: req.body.level,
         level: req.body.level,
         levelTs: Date.now()
       },
