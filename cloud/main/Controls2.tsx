@@ -9,8 +9,6 @@ import { sendValue } from '../api/index.mjs'
 const Controls2 = () => {
   const { icons, circuits } = useZusStore((state) => state)
 
-  const [newValue, setNewValue] = React.useState(0)
-  const [currentSliderValue2, setCurrentSliderValue2] = React.useState(0)
   return (
     <Box sx={{ display: 'flex', flexDirection: 'row', justifyContent: 'space-between', padding: '14px' }}>
       <CloudSlider
