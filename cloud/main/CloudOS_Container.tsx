@@ -29,8 +29,6 @@ const CloudOSContainer = () => {
         SET_REALTIME_STATE({ circuit, data })
       })
   })
-
-
   return (
     <Container fixed sx={{
       backgroundColor: 'rgb(176,176,170)',
@@ -39,15 +37,16 @@ const CloudOSContainer = () => {
       minWidth: '768px', minHeight: '1024px',
     }}
     >
-      <Card sx={{
-        width: '704px', height: '960px',
-        maxWidth: '704px', maxHeight: '960px',
-        minWidth: '704px', minHeight: '960px',
-        marginTop: '32px',
-        backgroundColor: 'rgba(227,226,222)',
-        borderRadius: '32px'
-      }}
-      elevation={0}
+      <Card
+        sx={{
+          width: '704px', height: '960px',
+          maxWidth: '704px', maxHeight: '960px',
+          minWidth: '704px', minHeight: '960px',
+          marginTop: '32px',
+          backgroundColor: 'rgba(227,226,222)',
+          borderRadius: '32px'
+        }}
+        elevation={0}
       >
 
         <Box sx={{ textAlign: 'right' }}><ClockWidget /></Box>

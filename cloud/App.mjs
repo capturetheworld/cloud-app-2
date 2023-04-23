@@ -1,5 +1,5 @@
-import CloudOSContainer from "./main/CloudOS_Container"
-import { QueryClient, QueryClientProvider } from "react-query"
+import CloudOSContainer from './main/CloudOS_Container'
+import { QueryClient, QueryClientProvider } from 'react-query'
 
 const queryClient = new QueryClient()
 

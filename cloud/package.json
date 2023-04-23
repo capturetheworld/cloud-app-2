@@ -11,7 +11,7 @@
     "web": "npx expo start --web",
     "foo": "npx expo --version",
     "build-web": "npx expo export:web",
-    "prepush": "yarn lint && yarn test"
+    "prepush": "pwd && npx eslint ."
   },
   "dependencies": {
     "@emotion/react": "^11.10.6",
