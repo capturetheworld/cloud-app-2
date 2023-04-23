@@ -11,15 +11,14 @@ interface Props {
   circuit: string
   onValueChange: (circuit: string, value: number) => void
 }
-export default function VerticalSlider({ icon, value, circuit, onValueChange }: Props) {
-  const [newValue, setNewValue] = React.useState(0)
+export default function VerticalSlider({ icon, value, circuit, onValueChange, }: Props) {
+  const [thumbValue, setThunbValue] = React.useState(0)
   const onChange = (_event: any, newValue: number) => {
-    setNewValue(newValue)
+    setThunbValue(newValue)
   }
   const onChangeCommitted = (_event: any, newValue: number) => {
     onValueChange(circuit, newValue)
   }
-
   return (
     <Box sx={{ height: 308 }}>
       <StyledSlider
@@ -27,8 +26,8 @@ export default function VerticalSlider({ icon, value, circuit, onValueChange }: 
         marks={false}
         orientation="vertical"
         size="lg"
-        value={value || newValue}
-        thumbvalue={newValue}
+        value={value}
+        thumbvalue={thumbValue}
         onChange={onChange}
         valueLabelDisplay={'auto'}
         variant="plain"
