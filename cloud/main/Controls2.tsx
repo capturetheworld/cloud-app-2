@@ -14,8 +14,8 @@ const Controls2 = () => {
       <CloudSlider
         valueLabelDisplay={false}
         icon={icons.ceiling}
-        value={circuits.ceilingLights?.value} circuit="ceilingLights"
-        // value={circuits.ceilingLights?.value || currentSliderValue} circuit="ceilingLights"
+        circuit="ceilingLights"
+        value={circuits.ceilingLights?.value}
         onValueChange={sendValue}
       />
       <CloudSlider
