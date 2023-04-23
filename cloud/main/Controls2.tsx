@@ -6,7 +6,6 @@ import useZusStore from '../data/zustand'
 import ClimateControls from '../components/ClimateControls'
 import RightToggles from '../components/RightToggles'
 import { sendValue } from '../api/index.mjs'
-
 const Controls2 = () => {
   const { icons, circuits } = useZusStore((state) => state)
 

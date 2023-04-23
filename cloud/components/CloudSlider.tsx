@@ -12,7 +12,11 @@ interface Props {
   onValueChange: (circuit: string, value: number) => void
 }
 export default function VerticalSlider({ icon, value, circuit, onValueChange }: Props) {
+  const [newValue, setNewValue] = React.useState(0)
   const onChange = (_event: any, newValue: number) => {
+    setNewValue(newValue)
+  }
+  const onChangeCommitted = (_event: any, newValue: number) => {
     onValueChange(circuit, newValue)
   }
 
@@ -23,11 +27,12 @@ export default function VerticalSlider({ icon, value, circuit, onValueChange }: 
         marks={false}
         orientation="vertical"
         size="lg"
-        value={value || 0}
+        value={value || newValue}
+        thumbvalue={newValue}
         onChange={onChange}
         valueLabelDisplay={'auto'}
         variant="plain"
-        // onChangeCommitted={() => alert("Dang")}
+        onChangeCommitted={onChangeCommitted}
         sx={{
           '--Slider-track-size': '21px',
           '--Slider-mark-size': '0px',
@@ -45,8 +50,8 @@ export default function VerticalSlider({ icon, value, circuit, onValueChange }: 
 
 
 const StyledSlider = styled(Slider, {
-  shouldForwardProp: (prop) => prop !== 'valueLabelDisplay'
-})<any>((prop) => {
+  shouldForwardProp: (props) => props !== 'valueLabelDisplay'
+})<any>((props) => {
   return ({
     backgroundColor: '#D5D4CD',
     borderRadius: '14px',
@@ -70,12 +75,13 @@ const StyledSlider = styled(Slider, {
     '& .MuiSlider-thumb': {
       width: '54px',
       height: '54px',
+      bottom: `${props.thumbvalue}% !important`,
       backgroundRepeat: 'no-repeat',
       backgroundAttachment: 'fixed',
       backgroundPosition: 'center',
       backgroundColor: 'transparent',
-      backgroundImage: `url(${prop.icon})`,
-      marginBottom: `${(-prop.value * .5) + 21}px`,
+      backgroundImage: `url(${props.icon})`,
+      marginBottom: `${(-props.value * .5) + 21}px`,
       marginTop: '3.5px',
       '&::before': {
         border: 'none',
