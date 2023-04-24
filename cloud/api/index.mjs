@@ -4,11 +4,13 @@ import io from 'socket.io-client'
 let contexts = {} //storage list of storage
 let globalOffset = 0
 
-const _testMode = true;
+const _testMode = false;
 
 if (_testMode) {
     console.warn('Testmode is turned on in the api! This means the data may not reflect real data.')
 }
+
+
 
 /**
  *
@@ -54,7 +56,7 @@ const run = () => {
 
             if (now > holdUntil) {
                 const nextLevel = targetLevel ? 0 : 255;
-                console.log('set next transition',name, nextLevel);
+                console.log('set next transition', name, nextLevel);
                 handleUpdate({
                     key: 'Circuit',
                     value: {
@@ -72,8 +74,22 @@ const run = () => {
 }
 
 
+
+export const roombaStart = () => {
+    axios.put('/hack/roomba/start');
+}
+
+export const roombaStop = () => {
+    axios.put('/hack/roomba/stop');
+}
+
+export const roombaHome = () => {
+    axios.put('/hack/roomba/home');
+}
+
+
 export const subscribeValue = (name, callback) => {
-    contexts[name] = { currentLevel: 0, ...contexts[name], callback,  }
+    contexts[name] = { currentLevel: 0, ...contexts[name], callback, }
 }
 
 export const sendValue = (name, level) => {

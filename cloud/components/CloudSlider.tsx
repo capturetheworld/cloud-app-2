@@ -53,7 +53,7 @@ const StyledSlider = styled(Slider, {
   shouldForwardProp: (props) => props !== 'valueLabelDisplay'
 })<any>((props) => {
   let thumbValue = props.thumbvalue || 0
-  if (thumbValue > 85) thumbValue = 85
+  if (thumbValue > 100) thumbValue = 100
   if (thumbValue < 0) thumbValue = 0
   return ({
     backgroundColor: '#D5D4CD',
