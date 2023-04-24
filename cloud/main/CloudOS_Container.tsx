@@ -10,17 +10,18 @@ const CloudOSContainer = () => {
   const { SET_REALTIME_STATE } = useZusStore()
   const circuits = [
     'ceilingLights',
-    'coveLights',
-    'blinds',
-    'bed',
-    'irobot',
-    'settings',
-    'more',
-    'temperature',
-    'home',
-    'away',
-    'bedtime',
-    'awake']
+    // 'coveLights',
+    // 'blinds',
+    // 'bed',
+    // 'irobot',
+    // 'settings',
+    // 'more',
+    // 'temperature',
+    // 'home',
+    // 'away',
+    // 'bedtime',
+    // 'awake'
+]
 
   // CONNECT TO API
   circuits.map((circuit) => {

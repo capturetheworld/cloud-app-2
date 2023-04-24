@@ -21,7 +21,7 @@ app.get('/', (req, res) => {
 })
 
 app.get('/info/timestamp', (req, res) => {
-  res.send({ data: 0 })
+  res.json(Date.now());
 })
 
 app.put('/circuit/level', (req, res) => {
@@ -34,9 +34,8 @@ app.put('/circuit/level', (req, res) => {
     value: {
       name: req.body.name,
       state: {
-        value: req.body.level,
         level: req.body.level,
-        levelTs: 1,
+        levelTs: Date.now()
       },
     },
   }
@@ -44,8 +43,8 @@ app.put('/circuit/level', (req, res) => {
 })
 
 app.put('/circuit/scene/:id', (req, res) => {
-  console.log('PUT', req.id)
-  res.send({ data: 0 })
+  console.log('PUT', req.params.id);
+  res.sendStatus(200);
 })
 
 socketIo.on('connection', (socket) => {
