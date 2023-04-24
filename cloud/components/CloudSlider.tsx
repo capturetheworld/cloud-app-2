@@ -19,6 +19,7 @@ export default function VerticalSlider({ icon, value, circuit, onValueChange, }:
   const onChangeCommitted = (_event: any, newValue: number) => {
     onValueChange(circuit, newValue)
   }
+  console.log(thumbValue)
   return (
     <Box sx={{ height: 308 }}>
       <StyledSlider
@@ -26,8 +27,8 @@ export default function VerticalSlider({ icon, value, circuit, onValueChange, }:
         marks={false}
         orientation="vertical"
         size="lg"
-        value={value}
-        thumbvalue={thumbValue}
+        value={value || 0}
+        thumbvalue={thumbValue || 0}
         onChange={onChange}
         valueLabelDisplay={'auto'}
         variant="plain"
@@ -51,6 +52,9 @@ export default function VerticalSlider({ icon, value, circuit, onValueChange, }:
 const StyledSlider = styled(Slider, {
   shouldForwardProp: (props) => props !== 'valueLabelDisplay'
 })<any>((props) => {
+  let thumbValue = props.thumbvalue || 0
+  if (thumbValue > 85) thumbValue = 85
+  if (thumbValue < 0) thumbValue = 0
   return ({
     backgroundColor: '#D5D4CD',
     borderRadius: '14px',
@@ -74,7 +78,7 @@ const StyledSlider = styled(Slider, {
     '& .MuiSlider-thumb': {
       width: '54px',
       height: '54px',
-      bottom: `${props.thumbvalue}% !important`,
+      bottom: `${thumbValue}% !important`,
       backgroundRepeat: 'no-repeat',
       backgroundAttachment: 'fixed',
       backgroundPosition: 'center',
