@@ -17,19 +17,19 @@ const RightToggles = () => {
     >
       <StyledToggleButton value='bed' aria-label='toggle bed'
         onClick={(e) => { roombaStart() }}
-        sx={{ backgroundColor: circuits.bed?.value ? 'white !important' : '' }}>
+        sx={{ backgroundColor: circuits.bed?.value ? 'white !important' : 'rgba(0,255,0,.3)' }}>
         <img src={icons.irobot} style={{ marginRight: '3.5px', marginBottom: '2px' }} />
       </ StyledToggleButton>
 
       <StyledToggleButton
-        onClick={(e) => {roombaStop() }}
-        sx={{ backgroundColor: circuits.irobot?.value ? 'white !important' : '' }}
+        onClick={(e) => { roombaStop() }}
+        sx={{ backgroundColor: circuits.irobot?.value ? 'white !important' : 'rgba(255,0,0,.3)' }}
         value='irobot' aria-label='toggle bed' size='small'>
         <img src={icons.irobot} style={{ marginRight: '3.5px', marginBottom: '2px' }} />
       </StyledToggleButton>
 
       <StyledToggleButton
-        sx={{ backgroundColor: circuits.settings?.value ? 'white !important' : '' }}
+        sx={{ backgroundColor: circuits.settings?.value ? 'white !important' : 'rgba(255,255,0,.3)' }}
         onClick={(e) => { roombaHome() }}
         value='setting' aria-label='toggle x' size='small'>
         <img src={icons.irobot} style={{ marginRight: '3.5px', marginBottom: '2px' }} />
