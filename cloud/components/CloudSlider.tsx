@@ -32,7 +32,7 @@ export default function VerticalSlider({ icon, value, circuit, onValueChange, to
         orientation="vertical"
         size="lg"
         value={Math.min(value || 0, thresholdValue)}
-        thumbvalue={thumbValue || 0}
+        thumbvalue={thumbValue || Math.min(value || 0, thresholdValue)}
         onChange={onChange}
         valueLabelDisplay={'auto'}
         variant="plain"

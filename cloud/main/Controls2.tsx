@@ -22,7 +22,7 @@ const Controls2 = () => {
         valueLabelDisplay={false}
         icon={icons.cove}
         circuit="C9"
-        value={circuits['C9']?.value} 
+        value={circuits['C9']?.value}
         // value={circuits.coveLights?.value || currentSliderValue} circuit="coveLights"
         onValueChange={sendValue}
       />
@@ -37,8 +37,7 @@ const Controls2 = () => {
         icon={icons.blinds}
         value={circuits['C11']?.value}
         circuit="C11"
-        toggleThreshold={1}
-        // value={circuits.blinds?.value || currentSliderValue} circuit="blinds"
+        toggleThreshold={50}
         onValueChange={sendValue}
       />
       <RightToggles />
