@@ -96,7 +96,7 @@ export const sendValue = (name, level) => {
     axios.put('/circuit/level', { name, level: (level * 255) / 100 })
     if (_testMode) {
         const now = Date.now();
-        contexts[name].testModeData.holdUntil = Date.now() + 10000;
+        contexts[name].testModeData.holdUntil = Date.now();
         setTimeout(() => {
             handleUpdate({
                 key: 'Circuit',
