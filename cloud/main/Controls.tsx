@@ -50,7 +50,9 @@ const Controls = () => {
             Morning
           </Typography>
         </StyledToggleButton>
-        <ToggleButton onClick={(e) => e.preventDefault()} sx={{ opacity: 0 }} value="" aria-label='' selected={false}></ToggleButton>
+        <ToggleButton onClick={(e) => e.preventDefault()} sx={{ opacity: 0, width: "50px" }} value="" aria-label='' selected={false} />
+        <ToggleButton onClick={(e) => e.preventDefault()} sx={{ opacity: 0 }} value="" aria-label='' selected={false} />
+
       </ToggleButtonGroup>
     </Box >
 

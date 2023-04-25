@@ -8,6 +8,7 @@ import Typography from '@mui/material/Typography'
 import SkipPreviousIcon from '@mui/icons-material/SkipPrevious'
 import PlayArrowIcon from '@mui/icons-material/PlayArrow'
 import SkipNextIcon from '@mui/icons-material/SkipNext'
+import LinearProgress, { LinearProgressProps } from '@mui/material/LinearProgress';
 
 export default function MusicControlCard() {
   const theme = useTheme()
@@ -27,15 +28,20 @@ export default function MusicControlCard() {
           /><Box>
 
             <Typography component='div' variant='body2' noWrap sx={{ maxWidth: '160px' }}>
-              Live From Spaceeeeeeeeeee
+              Live From Space
             </Typography>
             <Typography variant='subtitle2' color='text.secondary' component='div' noWrap sx={{ maxWidth: '160px' }}>
               Mac Miller
             </Typography>
           </Box>
         </CardContent>
-        <Box sx={{ display: 'flex', alignItems: 'center', pl: 1, pb: 1 }}>
-          <IconButton aria-label='previous'>
+        <LinearProgress variant="determinate" value={70} sx={{
+          width: "90%", marginLeft: '14px'
+        }} />
+        < Box sx={{
+          display: 'flex', alignItems: 'center', justifyContent: 'space-around'
+        }}>
+          < IconButton aria-label='previous'>
             {theme.direction === 'rtl' ? <SkipNextIcon /> : <SkipPreviousIcon />}
           </IconButton>
           <IconButton aria-label='play/pause'>
@@ -45,7 +51,7 @@ export default function MusicControlCard() {
             {theme.direction === 'rtl' ? <SkipPreviousIcon /> : <SkipNextIcon />}
           </IconButton>
         </Box>
-      </Box>
-    </Card>
+      </Box >
+    </Card >
   )
 }
