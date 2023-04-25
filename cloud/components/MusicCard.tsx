@@ -9,10 +9,17 @@ import SkipPreviousIcon from '@mui/icons-material/SkipPrevious'
 import PlayArrowIcon from '@mui/icons-material/PlayArrow'
 import SkipNextIcon from '@mui/icons-material/SkipNext'
 import LinearProgress from '@mui/material/LinearProgress'
+import useZusStore from '../data/zustand'
 
 export default function MusicControlCard() {
+  const { currentState } = useZusStore((state) => state)
   const theme = useTheme()
-
+  const tracks = {
+    awake: { title: 'Morning Light Breeze', artist: 'Noa Ivanovic', imageUrl: require('/assets/music/Morning.png') },
+    bedtime: { title: 'Healing Sounds', artist: 'Pavithra', imageUrl: require('/assets/music/MeditationBowl.png') },
+    hibernate: { title: '', artist: '', imageUrl: '' },
+    home: { title: 'Sunflower', artist: 'Post Malone', imageUrl: require('/assets/music/SpideyVerse.png') }
+  }
   return (
     <Card
       sx={{ backgroundColor: 'rgb(213,212,205)', width: '288px', height: '144px', borderRadius: '14px' }}
@@ -20,18 +27,21 @@ export default function MusicControlCard() {
     >
       <Box sx={{ display: 'flex', flexDirection: 'column' }}>
         <CardContent sx={{ display: 'flex', flexDirection: 'row' }}>
-          <CardMedia
+          {tracks[currentState].imageUrl && <CardMedia
             component='img'
             sx={{ width: '64px', height: '64px', marginRight: '7px' }}
-            image={require('/assets/music/cover.png')}
-            alt='Live from space album cover'
-          /><Box>
+            image={tracks[currentState].imageUrl || ''}
+            alt={tracks[currentState].title}
+          />}
+          {!tracks[currentState].imageUrl && <Box sx={{ width: '64px', height: '64px', marginRight: '7px' }}
+          />}
+          <Box>
 
             <Typography component='div' variant='body2' noWrap sx={{ maxWidth: '160px' }}>
-              Live From Space
+              {tracks[currentState].title}
             </Typography>
             <Typography variant='subtitle2' color='text.secondary' component='div' noWrap sx={{ maxWidth: '160px' }}>
-              Mac Miller
+              {tracks[currentState].artist}
             </Typography>
           </Box>
         </CardContent>
