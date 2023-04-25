@@ -34,7 +34,9 @@ const Controls2 = () => {
       <CloudSlider
         valueLabelDisplay={false}
         icon={icons.blinds}
-        value={circuits.blinds?.value} circuit="blinds"
+        value={circuits.blinds?.value}
+        circuit="blinds"
+        toggleThreshold={1}
         // value={circuits.blinds?.value || currentSliderValue} circuit="blinds"
         onValueChange={sendValue}
       />

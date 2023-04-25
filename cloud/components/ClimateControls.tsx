@@ -1,10 +1,18 @@
 import { Box, Card, Typography } from '@mui/material'
 import useZusStore from '../data/zustand'
+import { useState } from 'react'
 
 
 const ClimateControls = () => {
   const { icons } = useZusStore()
   const { minus, plus } = icons
+  const [temp, setTemp] = useState(66)
+  const handleMinus = () => {
+    setTemp(temp - 1)
+  }
+  const handlePlus = () => {
+    setTemp(temp + 1)
+  }
   return (
 
     <Card
@@ -30,10 +38,6 @@ const ClimateControls = () => {
 
       {/* CONTROLS */}
       <Box
-        onClick={e => {
-          e.preventDefault()
-          alert('DOWN')
-        }}
         sx={{
           display: 'flex',
           flexDirection: 'row',
@@ -46,12 +50,16 @@ const ClimateControls = () => {
           ...buttonStyle,
           marginRight: '16px',
           backgroundImage: `url(${minus})`,
-        }} />
+        }} onClick={e => {
+          e.preventDefault()
+          handleMinus()
+        }}
+        />
         <Box >
 
           {/* Temp Control */}
           <Typography variant='h3'>
-            75°F
+            {`${temp}°F`}
           </Typography>
         </Box>
 
@@ -59,7 +67,7 @@ const ClimateControls = () => {
         <Box
           onClick={e => {
             e.preventDefault()
-            alert('UP')
+            handlePlus()
           }}
           sx={{
             ...buttonStyle,
