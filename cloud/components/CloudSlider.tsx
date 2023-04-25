@@ -2,6 +2,7 @@ import * as React from 'react'
 import Box from '@mui/material/Box'
 import Slider from '@mui/joy/Slider'
 import styled from '@emotion/styled'
+import { useRef } from 'react'
 
 
 interface Props {
@@ -13,14 +14,14 @@ interface Props {
   toggleThreshold?: number
 }
 export default function VerticalSlider({ icon, value, circuit, onValueChange, toggleThreshold }: Props) {
-  const [thumbValue, setThunbValue] = React.useState(0)
+  const thumbValue = useRef(0)
   const thresholdValue = Math.abs(toggleThreshold ? toggleThreshold : 100)
   const onChange = (_event: any, newValue: number) => {
-    setThunbValue(newValue)
+    thumbValue.current = newValue
   }
   const onChangeCommitted = (_event: any, newValue: number) => {
-    if (thresholdValue && thumbValue > thresholdValue) { setThunbValue(85) }
-    else if (thresholdValue && thumbValue < thresholdValue) { setThunbValue(0) }
+    if (thresholdValue && thumbValue.current > thresholdValue) { thumbValue.current = 85 }
+    else if (thresholdValue && thumbValue.current < thresholdValue) { thumbValue.current = 0 }
     onValueChange(circuit, newValue)
   }
   console.log(thumbValue)
@@ -32,7 +33,7 @@ export default function VerticalSlider({ icon, value, circuit, onValueChange, to
         orientation="vertical"
         size="lg"
         value={Math.min(value || 0, thresholdValue)}
-        thumbvalue={thumbValue || Math.min(value || 0, thresholdValue)}
+        thumbvalue={thumbValue.current || Math.min(value || 0, thresholdValue)}
         onChange={onChange}
         valueLabelDisplay={'auto'}
         variant="plain"
