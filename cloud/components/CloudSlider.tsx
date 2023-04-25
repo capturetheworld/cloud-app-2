@@ -63,6 +63,7 @@ const StyledSlider = styled(Slider, {
     backgroundColor: '#D5D4CD',
     borderRadius: '14px',
     width: '70px',
+    marginRight: '14px',
     '& .MuiSlider-track': {
       backgroundColor: '#FFFFFF',
       borderRadius: '12px',

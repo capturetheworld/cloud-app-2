@@ -50,8 +50,9 @@ const Controls = () => {
             Morning
           </Typography>
         </StyledToggleButton>
-        <ToggleButton onClick={(e) => e.preventDefault()} sx={{ opacity: 0, width: '50px' }} value='' aria-label='' selected={false} />
-        <ToggleButton onClick={(e) => e.preventDefault()} sx={{ opacity: 0 }} value='' aria-label='' selected={false} />
+        <ToggleButton onClick={(e) => e.preventDefault()} sx={{ opacity: 0, width: '14px' }} value='' aria-label='' selected={false} />
+        <ToggleButton onClick={(e) => e.preventDefault()} sx={{ opacity: 0, width: '14px' }} value='' aria-label='' selected={false} />
+        <ToggleButton onClick={(e) => e.preventDefault()} sx={{ opacity: 0, width: '14px' }} value='' aria-label='' selected={false} />
 
       </ToggleButtonGroup>
     </Box >
@@ -70,6 +71,7 @@ const StyledToggleButton = styled(ToggleButton)(() => ({
     width: '140px',
     height: '52px',
     backgroundColor: 'rgb(213,212,205)',
+    marginRight: '10px',
   }, '& .Mui-selected': {
     backgroundColor: 'white',
     color: 'black',

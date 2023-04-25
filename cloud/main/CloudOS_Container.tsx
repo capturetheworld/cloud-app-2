@@ -43,12 +43,14 @@ const CloudOSContainer = () => {
     >
       <Card
         sx={{
-          width: '704px', height: '960px',
-          maxWidth: '704px', maxHeight: '960px',
-          minWidth: '704px', minHeight: '960px',
-          marginTop: '32px',
+          width: '768px', height: '1204px',
+          maxWidth: '768px', maxHeight: '1204px',
+          minWidth: '768px', minHeight: '1204px',
           backgroundColor: 'rgba(227,226,222)',
-          borderRadius: '32px'
+          borderRadius: '32px',
+          display: 'flex',
+          justifyContent: 'space-around',
+          flexDirection: 'column',
         }}
         elevation={0}
       >
@@ -61,7 +63,7 @@ const CloudOSContainer = () => {
           padding: '7px',
         }}>
 
-          <Box sx={{ display: 'flex', alignItems: 'cneter', justifyContent: 'center' }}><ModelState /></Box>
+          <Box sx={{ display: 'flex', alignItems: 'cneter', justifyContent: 'center', marginBottom: '35px' }}><ModelState /></Box>
           <Box sx={{ width: '100%' }}><Controls /></Box>
           <Box sx={{ width: '100%' }}><Controls2 /></Box>
         </Box>
