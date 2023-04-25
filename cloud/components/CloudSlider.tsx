@@ -6,17 +6,21 @@ import styled from '@emotion/styled'
 
 interface Props {
   valueLabelDisplay: boolean,
-  icon?: string,
-  value?: number
   circuit: string
   onValueChange: (circuit: string, value: number) => void
+  icon?: string
+  value?: number
+  toggleThreshold?: number
 }
-export default function VerticalSlider({ icon, value, circuit, onValueChange, }: Props) {
+export default function VerticalSlider({ icon, value, circuit, onValueChange, toggleThreshold }: Props) {
   const [thumbValue, setThunbValue] = React.useState(0)
+  const thresholdValue = Math.abs(toggleThreshold ? toggleThreshold : 100)
   const onChange = (_event: any, newValue: number) => {
     setThunbValue(newValue)
   }
   const onChangeCommitted = (_event: any, newValue: number) => {
+    if (thresholdValue && thumbValue > thresholdValue) { setThunbValue(85) }
+    else if (thresholdValue && thumbValue < thresholdValue) { setThunbValue(0) }
     onValueChange(circuit, newValue)
   }
   console.log(thumbValue)
@@ -27,7 +31,7 @@ export default function VerticalSlider({ icon, value, circuit, onValueChange, }:
         marks={false}
         orientation="vertical"
         size="lg"
-        value={value || 0}
+        value={Math.min(value || 0, thresholdValue)}
         thumbvalue={thumbValue || 0}
         onChange={onChange}
         valueLabelDisplay={'auto'}
@@ -53,7 +57,7 @@ const StyledSlider = styled(Slider, {
   shouldForwardProp: (props) => props !== 'valueLabelDisplay'
 })<any>((props) => {
   let thumbValue = props.thumbvalue || 0
-  if (thumbValue > 100) thumbValue = 100
+  if (thumbValue > props.toggleThreshold) thumbValue = 100
   if (thumbValue < 0) thumbValue = 0
   return ({
     backgroundColor: '#D5D4CD',

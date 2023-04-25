@@ -21,7 +21,7 @@ const CloudOSContainer = () => {
     // 'away', //hibernate turn things off quickly
     // 'bedtime', //turn many things off slowly, dim other things
     // 'awake'
-]
+  ]
 
   // CONNECT TO API
   circuits.map((circuit) => {
