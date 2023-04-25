@@ -1,23 +1,25 @@
 {
   "files": {
-    "main.js": "/cloud/static/js/main.7bcb030f.js",
+    "main.js": "/cloud/static/js/main.6b047dbe.js",
     "static/js/639.eeae021a.js": "/cloud/static/js/639.eeae021a.js",
+    "static/media/MeditationBowl.png": "/cloud/static/media/MeditationBowl.b8a0c0f87167ee3f21c4.png",
+    "static/media/Morning.png": "/cloud/static/media/Morning.eda067f5b6238107fe3f.png",
     "static/media/Awaken.png": "/cloud/static/media/Awaken.cc4c573d0655e20198f4.png",
     "static/media/Home.png": "/cloud/static/media/Home.7ec9d22514ccab1da140.png",
     "static/media/Bedtime.png": "/cloud/static/media/Bedtime.442097b7cc7043e7e4c8.png",
+    "static/media/SpideyVerse.png": "/cloud/static/media/SpideyVerse.fa76f3fb9b3a836e72aa.png",
     "static/media/Hibernate.png": "/cloud/static/media/Hibernate.892a945a5dd3f7db3b16.png",
     "favicon.ico": "/cloud/favicon.ico",
-    "static/media/cover.png": "/cloud/static/media/cover.533bba7dc7f0024584bd.png",
     "index.html": "/cloud/index.html",
     "favicon-32.png": "/cloud/favicon-32.png",
     "favicon-16.png": "/cloud/favicon-16.png",
     "serve.json": "/cloud/serve.json",
     "manifest.json": "/cloud/manifest.json",
-    "main.7bcb030f.js.map": "/cloud/static/js/main.7bcb030f.js.map",
+    "main.6b047dbe.js.map": "/cloud/static/js/main.6b047dbe.js.map",
     "639.eeae021a.js.map": "/cloud/static/js/639.eeae021a.js.map"
   },
   "entrypoints": [
     "static/js/639.eeae021a.js",
-    "static/js/main.7bcb030f.js"
+    "static/js/main.6b047dbe.js"
   ]
 }
