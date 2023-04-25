@@ -123,7 +123,7 @@ export const setScene = async (id) => {
     }
 }
 
-const socket = io.connect('localhost:3000')
+const socket = io.connect('/');
 socket.on('connect', () => {
     console.log('socket connected')
 })
