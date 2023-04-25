@@ -1,6 +1,6 @@
 import { ToggleButtonGroup, ToggleButton, styled } from '@mui/material'
 import useZusStore from '../data/zustand'
-import { sendValue } from '../api/index.mjs'
+import { sendValue, roombaStart, roombaStop, roombaHome } from '../api/index.mjs'
 
 const RightToggles = () => {
   const { icons, circuits } = useZusStore((state) => state)
@@ -16,13 +16,13 @@ const RightToggles = () => {
       }}
     >
       <StyledToggleButton value='bed' aria-label='toggle bed'
-        onClick={(e) => { buttonClick(e, 'bed') }}
+        onClick={(e) => { roombaStart() }}
         sx={{ backgroundColor: circuits.bed?.value ? 'white !important' : '' }}>
-        <img src={icons.bed} style={{ marginRight: '3.5px', marginBottom: '2px' }} />
+        <img src={icons.irobot} style={{ marginRight: '3.5px', marginBottom: '2px' }} />
       </ StyledToggleButton>
 
       <StyledToggleButton
-        onClick={(e) => { buttonClick(e, 'irobot') }}
+        onClick={(e) => {roombaStop() }}
         sx={{ backgroundColor: circuits.irobot?.value ? 'white !important' : '' }}
         value='irobot' aria-label='toggle bed' size='small'>
         <img src={icons.irobot} style={{ marginRight: '3.5px', marginBottom: '2px' }} />
@@ -30,16 +30,16 @@ const RightToggles = () => {
 
       <StyledToggleButton
         sx={{ backgroundColor: circuits.settings?.value ? 'white !important' : '' }}
-        onClick={(e) => { buttonClick(e, 'settings') }}
+        onClick={(e) => { roombaHome() }}
         value='setting' aria-label='toggle x' size='small'>
-        <img src={icons.settings} style={{ marginRight: '3.5px', marginBottom: '2px' }} />
+        <img src={icons.irobot} style={{ marginRight: '3.5px', marginBottom: '2px' }} />
       </StyledToggleButton>
 
       <StyledToggleButton
         value='more' aria-label='toggle xx' size='small'
         onClick={(e) => { buttonClick(e, 'more') }}
       >
-        <img src={icons.more} style={{ marginRight: '3.5px', marginBottom: '2px' }} />
+        <img src={icons.settings} style={{ marginRight: '3.5px', marginBottom: '2px' }} />
       </StyledToggleButton>
     </ToggleButtonGroup >
   )
