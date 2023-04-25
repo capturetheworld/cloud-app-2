@@ -8,7 +8,7 @@ import Typography from '@mui/material/Typography'
 import SkipPreviousIcon from '@mui/icons-material/SkipPrevious'
 import PlayArrowIcon from '@mui/icons-material/PlayArrow'
 import SkipNextIcon from '@mui/icons-material/SkipNext'
-import LinearProgress, { LinearProgressProps } from '@mui/material/LinearProgress';
+import LinearProgress from '@mui/material/LinearProgress'
 
 export default function MusicControlCard() {
   const theme = useTheme()
@@ -35,8 +35,8 @@ export default function MusicControlCard() {
             </Typography>
           </Box>
         </CardContent>
-        <LinearProgress variant="determinate" value={70} sx={{
-          width: "90%", marginLeft: '14px'
+        <LinearProgress variant='determinate' value={70} sx={{
+          width: '90%', marginLeft: '14px'
         }} />
         < Box sx={{
           display: 'flex', alignItems: 'center', justifyContent: 'space-around'

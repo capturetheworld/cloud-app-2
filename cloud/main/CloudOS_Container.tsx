@@ -33,9 +33,12 @@ const CloudOSContainer = () => {
   return (
     <Container fixed sx={{
       backgroundColor: 'rgb(176,176,170)',
-      width: '768px', height: '1024px',
-      maxWidth: '768px', maxHeight: '1024px',
-      minWidth: '768px', minHeight: '1024px',
+      width: '1024px', height: '1280px',
+      maxWidth: '1024px', maxHeight: '1280px',
+      minWidth: '1024px', minHeight: '1280px',
+      display: 'flex',
+      alignItems: 'center',
+      justifyContent: 'center',
     }}
     >
       <Card
