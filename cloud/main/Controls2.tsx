@@ -14,14 +14,15 @@ const Controls2 = () => {
       <CloudSlider
         valueLabelDisplay={false}
         icon={icons.ceiling}
-        circuit="C7"
-        value={circuits['C7']?.value}
+        circuit="C8"
+        value={circuits['C8']?.value}
         onValueChange={sendValue}
       />
       <CloudSlider
         valueLabelDisplay={false}
         icon={icons.cove}
-        value={circuits['C8']?.value} circuit="C8"
+        circuit="C9"
+        value={circuits['C9']?.value} 
         // value={circuits.coveLights?.value || currentSliderValue} circuit="coveLights"
         onValueChange={sendValue}
       />

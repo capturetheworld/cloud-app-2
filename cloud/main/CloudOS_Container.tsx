@@ -9,8 +9,8 @@ import useZusStore from '../data/zustand'
 const CloudOSContainer = () => {
   const { SET_REALTIME_STATE } = useZusStore()
   const circuits = [
-    'C7', //C7 ?? - ceilingLgithgs
-    'C8', //C8 - coveLights
+    'C8', //C8 ?? - ceilingLgithgs
+    'C9', //C9 - coveLights
     'C11', //C11 - 0 closed, anything else open - TOGGLE NOT SLIDER
     // 'bed', //cant control
     // 'irobot', //two buttons at least - states : off, go. home
