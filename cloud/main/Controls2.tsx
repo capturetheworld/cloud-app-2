@@ -14,14 +14,14 @@ const Controls2 = () => {
       <CloudSlider
         valueLabelDisplay={false}
         icon={icons.ceiling}
-        circuit="shrewd-juice"
-        value={circuits['shrewd-juice']?.value}
+        circuit="C7"
+        value={circuits['C7']?.value}
         onValueChange={sendValue}
       />
       <CloudSlider
         valueLabelDisplay={false}
         icon={icons.cove}
-        value={circuits.coveLights?.value} circuit="coveLights"
+        value={circuits['C8']?.value} circuit="C8"
         // value={circuits.coveLights?.value || currentSliderValue} circuit="coveLights"
         onValueChange={sendValue}
       />
@@ -34,8 +34,8 @@ const Controls2 = () => {
       <CloudSlider
         valueLabelDisplay={false}
         icon={icons.blinds}
-        value={circuits.blinds?.value}
-        circuit="blinds"
+        value={circuits['C11']?.value}
+        circuit="C11"
         toggleThreshold={1}
         // value={circuits.blinds?.value || currentSliderValue} circuit="blinds"
         onValueChange={sendValue}
